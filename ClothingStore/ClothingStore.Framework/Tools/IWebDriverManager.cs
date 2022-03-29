@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 
-namespace WebShop.Tricentis.Framework.Tools
+namespace ClothingStore.Framework.Tools
 {
     public interface IWebDriverManager : IDisposable
     {

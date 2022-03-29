@@ -1,0 +1,15 @@
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\bin\Debug\net5.0\ClothingStore.Framework.deps.json
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\bin\Debug\net5.0\ClothingStore.Framework.dll
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\bin\Debug\net5.0\ref\ClothingStore.Framework.dll
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\bin\Debug\net5.0\ClothingStore.Framework.pdb
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\bin\Debug\net5.0\Infrastructure.dll
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\bin\Debug\net5.0\Infrastructure.pdb
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.csproj.AssemblyReference.cache
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.AssemblyInfoInputs.cache
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.AssemblyInfo.cs
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.csproj.CoreCompileInputs.cache
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.csproj.CopyComplete
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.dll
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ref\ClothingStore.Framework.dll
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Framework\obj\Debug\net5.0\ClothingStore.Framework.pdb

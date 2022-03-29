@@ -1,0 +1,11 @@
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\bin\Debug\net5.0\Infrastructure.deps.json
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\bin\Debug\net5.0\Infrastructure.dll
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\bin\Debug\net5.0\ref\Infrastructure.dll
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\bin\Debug\net5.0\Infrastructure.pdb
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.AssemblyInfo.cs
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.dll
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\ref\Infrastructure.dll
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.pdb

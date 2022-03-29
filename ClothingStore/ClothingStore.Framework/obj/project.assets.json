@@ -120,6 +120,16 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -482,11 +492,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Clothing Store/Infrastructure.csproj",
+      "msbuildProject": "../Clothing Store/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
+      "Infrastructure >= 1.0.0",
       "Microsoft.Extensions.Logging.Abstractions >= 6.0.1",
       "NUnit >= 3.13.3",
       "Selenium.Support >= 4.1.0",
@@ -519,7 +535,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Git\\Clothing-Store\\ClothingStore\\Clothing Store\\Infrastructure.csproj": {
+              "projectPath": "C:\\Git\\Clothing-Store\\ClothingStore\\Clothing Store\\Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

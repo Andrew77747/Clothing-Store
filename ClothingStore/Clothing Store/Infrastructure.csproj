@@ -5,8 +5,4 @@
     <RootNamespace>Clothing_Store</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
-
 </Project>
