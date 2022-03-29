@@ -16,9 +16,10 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         #region Maps of Elements
 
-        private By _logo = By.CssSelector(".logo.img-responsive");
-        private By _menu = By.CssSelector(".sf-menu");
-        private By _navigationTabs = By.CssSelector(".nav.nav-tabs");
+        private By _logo = By.CssSelector(".logo");
+        private By _headerMenu = By.CssSelector(".header__mainlinks");
+        private By _banners = By.CssSelector(".indexHat");
+        private By _loginBtn = By.CssSelector(".login");
 
         #endregion
 
@@ -29,7 +30,12 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         public bool VerifyMainPage()
         {
-            return Wrapper.IsPageLoaded(_logo, _menu, _navigationTabs);
+            return Wrapper.IsPageLoaded(_logo, _headerMenu, _banners);
+        }
+
+        public void ClickLogin()
+        {
+            Wrapper.ClickElement(_loginBtn);
         }
     }
 }

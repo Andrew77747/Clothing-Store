@@ -16,11 +16,11 @@ namespace ClothingStore.Tests
             mainPage = new MainPage(manager, configuration.GetSettings());
         }
 
-        [Given(@"I'm on the main page")]
-        public void GivenIMOnTheMainPage()
-        {
-            mainPage.OpenPage();
-        }
+        //[Given(@"I'm on the main page")]
+        //public void GivenIMOnTheMainPage()
+        //{
+        //    mainPage.OpenPage();
+        //}
         
         [Then(@"I check main page loaded")]
         public void ThenICheckMainPageLoaded()

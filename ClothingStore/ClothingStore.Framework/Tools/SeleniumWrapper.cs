@@ -260,6 +260,12 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
+        public bool VerifyExpectedTitleIsDisplayed(By by, string text)
+        {
+            var textFromElement = _driver.FindElement(by).Text;
+            return textFromElement.Contains(text);
+        }
+
 
         #endregion
 

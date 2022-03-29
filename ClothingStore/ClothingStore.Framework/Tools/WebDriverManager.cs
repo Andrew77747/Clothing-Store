@@ -9,23 +9,6 @@ namespace ClothingStore.Framework.Tools
 
     {
         public IWebDriver Driver;
-        //public WebDriverWait Wait;
-
-        //public WebDriverManager()
-        //{
-        //}
-
-        //public IWebDriver Driver;
-        //public WebDriverWait Wait;
-        //public Appsettings Settings;
-
-        //public WebDriverManager()
-        //{
-        //    Driver = GetDriver();
-        //    Settings = new Appsettings();
-        //    Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Settings.Timeout));
-        //    Driver.Manage().Window.Maximize();
-        //}
 
         public IWebDriver GetDriver()
         {
@@ -35,17 +18,10 @@ namespace ClothingStore.Framework.Tools
             }
 
             Driver = new ChromeDriver();
-            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            //object p = Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             Driver.Manage().Window.Maximize();
+
             return Driver;
         }
-
-        //public WebDriverWait GetWaiter()
-        //{
-        //    Wait = new WebDriverWait(GetDriver(), TimeSpan.FromSeconds(3));
-        //    return Wait;
-        //}
 
         public WebDriverWait GetWaiter()
         {
