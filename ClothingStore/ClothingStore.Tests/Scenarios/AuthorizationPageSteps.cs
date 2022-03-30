@@ -29,7 +29,14 @@ namespace ClothingStore.Tests.Scenarios
         {
             _authorizationPage.Login();
         }
-        
+
+        [When(@"I go to personal area")]
+        public void WhenIGoToPersonalArea()
+        {
+            _authorizationPage.GoToPersonalArea();
+        }
+
+
         [Then(@"I'm in my account")]
         public void ThenIMInMyAccount()
         {
