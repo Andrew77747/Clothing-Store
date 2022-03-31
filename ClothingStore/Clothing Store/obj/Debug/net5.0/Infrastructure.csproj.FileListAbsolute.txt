@@ -9,3 +9,4 @@ C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructu
 C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.dll
 C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\ref\Infrastructure.dll
 C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.pdb
+C:\Git\Clothing-Store\ClothingStore\Clothing Store\obj\Debug\net5.0\Infrastructure.csproj.AssemblyReference.cache

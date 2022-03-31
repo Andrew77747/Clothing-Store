@@ -18,17 +18,17 @@ namespace ClothingStore.Tests.Scenarios
             _mainPage = new MainPage(manager, configuration.GetSettings());
         }
 
-        [Given(@"I go to the authorization page")]
-        public void GivenIGoToTheAuthorizationPage()
-        {
-            _mainPage.ClickLogin();
-        }
+        //[Given(@"I go to the authorization page")]
+        //public void GivenIGoToTheAuthorizationPage()
+        //{
+        //    _mainPage.ClickLogin();
+        //}
         
-        [When(@"I login")]
-        public void WhenILogin()
-        {
-            _authorizationPage.Login();
-        }
+        //[When(@"I login")]
+        //public void WhenILogin()
+        //{
+        //    _authorizationPage.Login();
+        //}
 
         [When(@"I go to personal area")]
         public void WhenIGoToPersonalArea()

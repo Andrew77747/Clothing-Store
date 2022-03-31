@@ -1,4 +1,5 @@
-﻿using ClothingStore.Framework.Tools;
+﻿using System.Threading;
+using ClothingStore.Framework.Tools;
 using Infrastructure.Settings;
 using OpenQA.Selenium;
 
@@ -24,15 +25,13 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _userAccountInfo = By.CssSelector(".userInfo");
         private By _sideUserMenu = By.CssSelector(".content__leftColumn");
         private By _accountEmail = By.XPath("//*[contains(text(), 'E-mail:')]/..");
-
-        
-        
-        
+        //private By _loginBtn = By.CssSelector(".huab__cell.huab__cell__member");
 
         #endregion
 
         public void Login()
         {
+            //Wrapper.ClickElement(_loginBtn);
             Wrapper.TypeAndSend(_userInputEmail, _settings.Login);
             Wrapper.TypeAndSend(_userInputPassword, _settings.Password);
             Wrapper.ClickElement(_logginBtn);

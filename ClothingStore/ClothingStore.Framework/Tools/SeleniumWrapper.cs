@@ -3,6 +3,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
 
@@ -72,6 +73,12 @@ namespace ClothingStore.Framework.Tools
         {
             WaitElementDisplayed(by);
             return _driver.FindElement(by);
+        }
+
+        public List <IWebElement> FindElements(By by)
+        {
+            WaitElementDisplayed(by);
+            return new List<IWebElement>(_driver.FindElements(by));
         }
 
         public void ClickElement(By by)
@@ -175,9 +182,9 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
-        public string GetValuesOfAttribute(By by)
+        public string GetValuesOfAttribute(By by, string value)
         {
-            return _driver.FindElement(by).GetAttribute("value");
+            return _driver.FindElement(by).GetAttribute(value);
         }
 
         //public bool IsElementVisible(By by) ////

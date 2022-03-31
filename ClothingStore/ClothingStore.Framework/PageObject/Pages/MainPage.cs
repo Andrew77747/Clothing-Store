@@ -19,7 +19,6 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _logo = By.CssSelector(".logo");
         private By _headerMenu = By.CssSelector(".header__mainlinks");
         private By _banners = By.CssSelector(".indexHat");
-        private By _loginBtn = By.CssSelector(".huab__cell.huab__cell__member");
 
         #endregion
 
@@ -31,11 +30,6 @@ namespace ClothingStore.Framework.PageObject.Pages
         public bool VerifyMainPage()
         {
             return Wrapper.IsPageLoaded(_logo, _headerMenu, _banners);
-        }
-
-        public void ClickLogin()
-        {
-            Wrapper.ClickElement(_loginBtn);
         }
     }
 }
