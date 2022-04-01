@@ -96,6 +96,66 @@ namespace ClothingStore.Framework.Tools
             return _driver.PageSource;
         }
 
+        public List<string> GetElementsTextList(By selector)
+        {
+            var allElementsWithText = _driver.FindElements(selector);
+            List<string> names = new List<string>();
+
+            foreach (var oneElementWithText in allElementsWithText)
+            {
+                names.Add(oneElementWithText.Text);
+            }
+
+            return names;
+        }
+
+        //public string[] GetElementsTextArray(By selector)
+        //{
+        //    var allElementsWithText = _driver.FindElements(selector);
+        //    string[] names = new string[allElementsWithText.Count];
+
+        //    for (int i = 0; i < names.Length; i++)
+        //    {
+        //        names[i] = allElementsWithText[i].FindElement(selector).Text;
+        //        Console.WriteLine(names[i]);
+        //    }
+
+        //    //foreach (var oneElementWithText in allElementsWithText)
+        //    //{
+        //    //    names.Add(oneElementWithText.Text);
+        //    //}
+
+        //    return names;
+        //}
+
+        public string[] GetElementsTextArray(By selector, By selector2)
+        {
+            var allElementsWithText = GetElements(selector);
+            string[] names = new string[allElementsWithText.Count];
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = allElementsWithText[i].FindElement(selector2).Text;
+                Console.WriteLine(names[i]);
+            }
+
+            return names;
+        }
+
+        //public string[] GetElementsText(By selector, By selector2)
+        //{
+        //    var listOfElements = GetElements(selector);
+        //    string[] names = new string[listOfElements.Count];
+
+        //    for (int i = 0; i < names.Length; i++)
+        //    {
+        //        names[i] = listOfElements[i].FindElement(selector2).Text;
+        //        Console.WriteLine(names[i]);
+        //    }
+
+        //    return names;
+        //}
+
         public void HoverMouseOnElement(string selector)
         {
             try

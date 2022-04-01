@@ -40,12 +40,17 @@ namespace ClothingStore.Tests.Handlers
             _authorizationPage.Login();
         }
 
-
         [Given(@"I clean shopping cart")]
         public void GivenICleanShoppingCart()
         {
             _header.GoToShoppingCart();
             _shoppingCart.CleanShoppingCart();
+        }
+
+        [When(@"I choose '(.*)' in catalog")]
+        public void WhenIChooseInCatalog(string name)
+        {
+            _header.ChooseCatalogItem(name);
         }
     }
 }
