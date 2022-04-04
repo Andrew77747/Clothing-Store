@@ -33,42 +33,15 @@ namespace ClothingStore.Framework.PageObject.Pages
             Wrapper.ClickElement(_sortingByPriceAsc);
         }
 
-        //public bool IsSortingAscRight()
-        //{
-        //    var actualArray = Wrapper.GetElementsText(_actualPriceElements);
-
-        //    //string[] expectedArray = new string[actualArray.Count];
-        //    //actualArray.CopyTo(expectedArray, 0);
-
-        //    //Array.Sort(expectedArray);
-
-        //    //if (actualArray.SequenceEqual(expectedArray))
-        //    //{
-        //    //    Console.WriteLine(expectedArray);
-        //    //    return true;
-        //    //}
-        //    //else
-        //    //{
-        //    //    Console.WriteLine(expectedArray);
-        //    //    return false;
-        //    //}
-
-        //}
-
         public string[] GetActualPriceArray()
         {
 
             return Wrapper.GetElementsTextArray(_productCard, _actualPriceElements);
         }
 
-        public bool IsSortingAskRight()
+        public bool IsSortingPriceAskRight()
         {
-            return Wrapper.IsSortingAskRight(GetActualPriceArray());
+            return Wrapper.IsSortingPriceAskRightStringToInt(GetActualPriceArray());
         }
-
-        //public string[] GetPriceFromCards(By selector)
-        //{
-        //    return Wrapper.GetElementsText(selector);
-        //}
     }
 }

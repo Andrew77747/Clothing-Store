@@ -1,6 +1,7 @@
 ﻿using ClothingStore.Framework.PageObject.Elements;
 using ClothingStore.Framework.PageObject.Pages;
 using ClothingStore.Framework.Tools;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace ClothingStore.Tests.Handlers
@@ -35,12 +36,14 @@ namespace ClothingStore.Tests.Handlers
 
         [Given(@"I login")]
         [When(@"I login")]
+        [Then(@"I login")]
         public void WhenILogin()
         {
-            _authorizationPage.Login();
+            //_authorizationPage.Login();
+            Assert.IsTrue(_authorizationPage.Login(), "User is not logged!");
         }
 
-        [Given(@"I clean shopping cart")]
+        [Then(@"I clean shopping cart")]
         public void GivenICleanShoppingCart()
         {
             _header.GoToShoppingCart();

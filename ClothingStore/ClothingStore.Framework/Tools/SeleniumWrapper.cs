@@ -280,6 +280,39 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
+        public bool IsSortingPriceAskRightStringToInt(string[] actualArray)
+        {
+            for (int i = 0; i < actualArray.Length; i++)
+            {
+                actualArray[i] = actualArray[i].Replace(" ", string.Empty);
+                actualArray[i] = actualArray[i].Replace("₽", string.Empty);
+            }
+
+            int[] expectedArray = new int[actualArray.Length];
+
+            int[] intActualArray = new int[actualArray.Length];
+
+            for (int i = 0; i < actualArray.Length; i++)
+            {
+                intActualArray[i] = Int32.Parse(actualArray[i]);
+            }
+
+            intActualArray.CopyTo(expectedArray, 0);
+
+            Array.Sort(expectedArray);
+
+            if (intActualArray.SequenceEqual(expectedArray))
+            {
+                Console.WriteLine(expectedArray);
+                return true;
+            }
+            else
+            {
+                Console.WriteLine(expectedArray);
+                return false;
+            }
+        }
+
         public bool IsSortingDescRight(string[] actualArray)
         {
 

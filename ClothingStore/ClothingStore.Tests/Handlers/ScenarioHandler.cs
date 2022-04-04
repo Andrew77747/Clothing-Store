@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace ClothingStore.Tests.Handlers
 {
+    [Binding]
     public class ScenarioHandler
     {
         [BeforeScenario]

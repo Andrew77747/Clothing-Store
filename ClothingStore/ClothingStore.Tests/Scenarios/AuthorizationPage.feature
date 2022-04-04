@@ -1,6 +1,6 @@
 ﻿Feature: AuthorizationPage
 
-Scenario: Check Login
+Scenario: Check Login and account
 	Given I'm on the main page
 	And I go to the authorization page
 	When I login

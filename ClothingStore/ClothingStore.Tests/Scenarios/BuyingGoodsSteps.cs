@@ -21,7 +21,7 @@ namespace ClothingStore.Tests.Scenarios
             _shoppingCart = new ShoppingCart(manager);
         }
 
-        [When(@"I find '(.*)'")]
+        [Given(@"I find '(.*)'")]
         public void WhenIFind(string model)
         {
             _header.SelectGood(model);

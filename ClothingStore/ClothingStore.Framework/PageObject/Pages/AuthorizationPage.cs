@@ -9,6 +9,7 @@ namespace ClothingStore.Framework.PageObject.Pages
     {
         private Appsettings _settings;
         private string userEmail = "andrew-walker@yandex.ru";
+        private string userInitialInIcon = "AN";
 
         public AuthorizationPage(IWebDriverManager manager, Appsettings settings) : base(manager)
         {
@@ -24,17 +25,19 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _personalAreaHeader = By.CssSelector(".content__header");
         private By _userAccountInfo = By.CssSelector(".userInfo");
         private By _sideUserMenu = By.CssSelector(".content__leftColumn");
+        private By _userIcon = By.CssSelector(".huab__cell__text.orange");
         private By _accountEmail = By.XPath("//*[contains(text(), 'E-mail:')]/..");
         //private By _loginBtn = By.CssSelector(".huab__cell.huab__cell__member");
 
         #endregion
 
-        public void Login()
+        public bool Login()
         {
             //Wrapper.ClickElement(_loginBtn);
             Wrapper.TypeAndSend(_userInputEmail, _settings.Login);
             Wrapper.TypeAndSend(_userInputPassword, _settings.Password);
             Wrapper.ClickElement(_logginBtn);
+            return Wrapper.VerifyExpectedTitleIsDisplayed(_userIcon, userInitialInIcon);
         }
 
         public void GoToPersonalArea()

@@ -25,7 +25,7 @@ namespace ClothingStore.Tests.Scenarios
             _digitalVideoCameras = new DigitalVideoCameras(manager);
         }
 
-        [When(@"I click catalog")]
+        [Given(@"I click catalog")]
         public void WhenIClickCatalog()
         {
             _header.ClickCatalog();
@@ -55,7 +55,7 @@ namespace ClothingStore.Tests.Scenarios
         [Then(@"I see only Panasonic videocameras sorting by price asc")]
         public void ThenISeeOnlyPanasonicVideoamerasSortingByPriceAsc()
         {
-            Assert.IsTrue(_digitalVideoCameras.IsSortingAskRight(), "Sorting is not correct!");
+            Assert.IsTrue(_digitalVideoCameras.IsSortingPriceAskRight(), "Sorting is not correct!");
         }
     }
 }
