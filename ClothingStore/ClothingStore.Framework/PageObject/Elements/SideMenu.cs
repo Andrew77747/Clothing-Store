@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace ClothingStore.Framework.PageObject.Elements
 {
-    public class SideMenu : BasePage
+    public class SideMenu : BaseElement
     {
         public SideMenu(IWebDriverManager manager) : base(manager)
         {

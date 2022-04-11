@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 
 namespace ClothingStore.Framework.Tools
@@ -75,7 +76,7 @@ namespace ClothingStore.Framework.Tools
             return _driver.FindElement(by);
         }
 
-        public List <IWebElement> FindElements(By by)
+        public List<IWebElement> FindElements(By by)
         {
             WaitElementDisplayed(by);
             return new List<IWebElement>(_driver.FindElements(by));
@@ -128,6 +129,20 @@ namespace ClothingStore.Framework.Tools
         //    return names;
         //}
 
+        public string[] GetElementsTextArray(By selector)
+        {
+            var allElementsWithText = FindElements(selector);
+            string[] names = new string[allElementsWithText.Count];
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = allElementsWithText[i].Text;
+                Console.WriteLine(names[i]);
+            }
+
+            return names;
+        }
+
         public string[] GetElementsTextArray(By selector, By selector2)
         {
             var allElementsWithText = GetElements(selector);
@@ -140,6 +155,12 @@ namespace ClothingStore.Framework.Tools
             }
 
             return names;
+        }
+
+        public string GetElementText(By selector)
+        {
+            string name = FindElement(selector).Text;
+            return name;
         }
 
         //public string[] GetElementsText(By selector, By selector2)
@@ -247,6 +268,13 @@ namespace ClothingStore.Framework.Tools
             return _driver.FindElement(by).GetAttribute(value);
         }
 
+        public bool IsAttributeValueEqual(By selector, string text)
+        {
+            if (GetValuesOfAttribute(selector, "value") == text)
+                return true;
+            return false;
+        }
+
         //public bool IsElementVisible(By by) ////
         //{
         //    try
@@ -278,6 +306,51 @@ namespace ClothingStore.Framework.Tools
                 Console.WriteLine(expectedArray);
                 return false;
             }
+        }
+
+        public string CutPartTextWithAllTextValue(string actualText, string deleteTextBefore, string deleteTextAfter)
+        {
+            Match match = Regex.Match(actualText, $@"{deleteTextBefore}(.*?){deleteTextAfter}");
+
+            string x = match.Groups[1].Value;
+            return x;
+        }
+
+        public string CutPartTextFromMiddle(string actualText, string deleteBefore, string deleteAfter)
+        {
+            Match match = Regex.Match(actualText, $@"(?<={deleteBefore})[^{deleteAfter}]*");
+            return match.Value;
+        }
+
+        public string CutLastPartText(string actualText, string deleteAfter)
+        {
+            Match match = Regex.Match(actualText, $@"[^{deleteAfter}]*");
+            return match.Value;
+        }
+
+        public int TotalAmount(string[] actualArray)
+        {
+            for (int i = 0; i < actualArray.Length; i++)
+            {
+                actualArray[i] = actualArray[i].Replace(" ", string.Empty);
+                actualArray[i] = actualArray[i].Replace("₽", string.Empty);
+            }
+
+            int[] intActualArray = new int[actualArray.Length];
+
+            for (int i = 0; i < actualArray.Length; i++)
+            {
+                intActualArray[i] = Int32.Parse(actualArray[i]);
+            }
+
+            int totalAmount = 0;
+
+            for (int i = 0; i < actualArray.Length; i++)
+            {
+                totalAmount += intActualArray[i];
+            }
+
+            return totalAmount;
         }
 
         public bool IsSortingPriceAskRightStringToInt(string[] actualArray)
@@ -334,6 +407,17 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
+        public void ClickCheckbox(By selector)
+        {
+            string value = "class";
+
+            var x = GetValuesOfAttribute(selector, value);
+            if (!x.Contains("active"))
+            {
+                ClickElement(selector);
+            }
+        }
+
         public bool IsPageLoaded(By selector1, By selector2, By selector3)
         {
             return VerifyExpectedElementsAreDisplayed(selector1) &&
@@ -380,6 +464,26 @@ namespace ClothingStore.Framework.Tools
         public void WaitElement(By by)
         {
             _wait.Until(d => IsElementExists(by));
+        }
+
+        public bool IsTextContains(By fullTextSelector, string searchedText)
+        {
+            if (GetElementText(fullTextSelector).Contains(searchedText))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsTextContains(By fullTextSelector, By searchedTextSelector)
+        {
+            if (GetElementText(fullTextSelector).Contains(GetElementText(searchedTextSelector)))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool IsElementExists(By by)

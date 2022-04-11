@@ -13,19 +13,19 @@ namespace ClothingStore.Framework.PageObject.Pages
         #region Maps of Elements
 
         private By _buyBtn = By.CssSelector(".catalog__displayedItem__button .button.button__orange");
-        private By _checkoutBtn = By.CssSelector(".js__usualSpoilerBlock .button.button__clearGray");
+        private By _gooProductTitle = By.CssSelector(".productPage__card [itemprop='name']");
 
         #endregion
 
-        public void ClickBuyButton()
+        public void ClickBuyBtn()
         {
             Wrapper.ClickElement(_buyBtn);
         }
 
-        public void ClickBuyBtnAndCheckout()
+        public string GetGoodName()
         {
-            Wrapper.ClickElement(_buyBtn);
-            Wrapper.ClickElement(_checkoutBtn);
+            //return Wrapper.GetElementText(By.CssSelector(".addedToCart_itemInfo__data"));
+            return Wrapper.GetElementText(_gooProductTitle);
         }
     }
 }

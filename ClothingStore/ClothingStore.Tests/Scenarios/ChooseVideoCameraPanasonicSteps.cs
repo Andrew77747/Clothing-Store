@@ -26,6 +26,7 @@ namespace ClothingStore.Tests.Scenarios
         }
 
         [Given(@"I click catalog")]
+        [When(@"I click catalog")]
         public void WhenIClickCatalog()
         {
             _header.ClickCatalog();

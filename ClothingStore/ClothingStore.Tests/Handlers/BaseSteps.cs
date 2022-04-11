@@ -28,21 +28,6 @@ namespace ClothingStore.Tests.Handlers
             _mainPage.OpenPage();
         }
 
-        [Given(@"I go to the authorization page")]
-        public void GivenIGoToTheAuthorizationPage()
-        {
-            _header.ClickLogin();
-        }
-
-        [Given(@"I login")]
-        [When(@"I login")]
-        [Then(@"I login")]
-        public void WhenILogin()
-        {
-            //_authorizationPage.Login();
-            Assert.IsTrue(_authorizationPage.Login(), "User is not logged!");
-        }
-
         [Then(@"I clean shopping cart")]
         public void GivenICleanShoppingCart()
         {
@@ -55,5 +40,18 @@ namespace ClothingStore.Tests.Handlers
         {
             _header.ChooseCatalogItem(name);
         }
+
+        [When(@"I go to shopping cart")]
+        public void WhenIGoToShoppingCart()
+        {
+            _header.GoToShoppingCart();
+        }
+
+        [When(@"I hover on '(.*)' in side catalog menu")]
+        public void WhenIHoverOnInSideCatalogMenu(string text)
+        {
+            _header.HoverMouseOnSideMenuElement(text);
+        }
+
     }
 }

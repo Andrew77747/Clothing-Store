@@ -34,7 +34,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         public bool Login()
         {
             //Wrapper.ClickElement(_loginBtn);
-            Wrapper.TypeAndSend(_userInputEmail, _settings.Login);
+            Wrapper.TypeAndSend(_userInputEmail, _settings.Email);
             Wrapper.TypeAndSend(_userInputPassword, _settings.Password);
             Wrapper.ClickElement(_logginBtn);
             return Wrapper.VerifyExpectedTitleIsDisplayed(_userIcon, userInitialInIcon);

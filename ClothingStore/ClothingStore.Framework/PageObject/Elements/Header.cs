@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.IO;
+using System.Threading;
 using ClothingStore.Framework.Tools;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace ClothingStore.Framework.PageObject.Elements
 {
@@ -38,12 +41,12 @@ namespace ClothingStore.Framework.PageObject.Elements
 
             Wrapper.WaitElementDisplayed(_searchFastResult);
 
-            //var good = By.CssSelector($"[data-cattitle='{text}']");
+            var good = By.CssSelector($"[data-cattitle='{text}']");
 
-            //if (Wrapper.IsElementExists(good) == true)
-            //{
-            //    Wrapper.ClickElement(good);
-            //}
+            if (Wrapper.IsElementExists(good) == true)
+            {
+                Wrapper.ClickElement(good);
+            }
         }
 
         public void GoToShoppingCart()
@@ -62,6 +65,12 @@ namespace ClothingStore.Framework.PageObject.Elements
             Thread.Sleep(1000);
             Wrapper.WaitElementDisplayed(By.XPath($"//a[text()= '{itemName}']"));
             Wrapper.ClickElement(By.XPath($"//a[text()= '{itemName}']"));
+        }
+
+        public void HoverMouseOnSideMenuElement(string nameOfItem)
+        {
+            var selector = $"//a[@class='mCM__item__link mCM__item__icon']//span[text()= '{nameOfItem}']";
+            Wrapper.HoverMouseOnElement(selector);
         }
     }
 }
