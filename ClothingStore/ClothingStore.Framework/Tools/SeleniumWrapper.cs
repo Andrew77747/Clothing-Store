@@ -322,9 +322,9 @@ namespace ClothingStore.Framework.Tools
             return match.Value;
         }
 
-        public string CutLastPartText(string actualText, string deleteAfter)
+        public string CutLastPartText(string actualText, string deleteBefore) // Надо проверить
         {
-            Match match = Regex.Match(actualText, $@"[^{deleteAfter}]*");
+            Match match = Regex.Match(actualText, $@"(?<={deleteBefore})");
             return match.Value;
         }
 
@@ -499,6 +499,17 @@ namespace ClothingStore.Framework.Tools
                 return false;
             }
         }
+
+        public int ElementCount(By selector)
+        {
+            int totalCountElements = 0;
+
+            var listOfElements = GetElements(selector);
+            totalCountElements += listOfElements.Count;
+
+            return totalCountElements;
+        }
+
 
         public bool IsElementDisplayed(By by)
         {

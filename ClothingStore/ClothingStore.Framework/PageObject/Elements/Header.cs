@@ -26,6 +26,7 @@ namespace ClothingStore.Framework.PageObject.Elements
         private By _catalogBtn = By.CssSelector(".header__button.header__buttonCatalog");
         private By _videocamerasLinkInCatalog = By.CssSelector("[title='Перейти в категорию «Видеокамеры»']");
         private By _catalogPanel = By.CssSelector(".catalogLine__panel");
+        private By _promotionsBtn = By.CssSelector(".header__button.header__buttonActions");
 
         #endregion
 
@@ -71,6 +72,11 @@ namespace ClothingStore.Framework.PageObject.Elements
         {
             var selector = $"//a[@class='mCM__item__link mCM__item__icon']//span[text()= '{nameOfItem}']";
             Wrapper.HoverMouseOnElement(selector);
+        }
+
+        public void ClickPromotions()
+        {
+            Wrapper.ClickElement(_promotionsBtn);
         }
     }
 }
