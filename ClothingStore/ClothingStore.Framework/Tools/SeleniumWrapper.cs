@@ -308,7 +308,7 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
-        public string CutPartTextWithAllTextValue(string actualText, string deleteTextBefore, string deleteTextAfter)
+        public string CutPartTextFromMiddleWithAllTextValue(string actualText, string deleteTextBefore, string deleteTextAfter) // Лучше метод. Работает по целым словам
         {
             Match match = Regex.Match(actualText, $@"{deleteTextBefore}(.*?){deleteTextAfter}");
 
@@ -316,15 +316,21 @@ namespace ClothingStore.Framework.Tools
             return x;
         }
 
-        public string CutPartTextFromMiddle(string actualText, string deleteBefore, string deleteAfter)
+        public string CutFirstPartTextWithAllTextValue(string actualText, string deleteTextBefore)
         {
-            Match match = Regex.Match(actualText, $@"(?<={deleteBefore})[^{deleteAfter}]*");
-            return match.Value;
+            Match match = Regex.Match(actualText, $@"{deleteTextBefore}(.*)");
+            return match.Groups[1].Value;
         }
 
-        public string CutLastPartText(string actualText, string deleteBefore) // Надо проверить
+        public string CutLastPartTextWithAllTextValue(string actualText, string deleteTextAfter)
         {
-            Match match = Regex.Match(actualText, $@"(?<={deleteBefore})");
+            Match match = Regex.Match(actualText, $@"(.*){deleteTextAfter}");
+            return match.Groups[1].Value;
+        }
+
+        public string CutPartTextFromMiddle(string actualText, string deleteBefore, string deleteAfter) // Работает только по символам
+        {
+            Match match = Regex.Match(actualText, $@"(?<={deleteBefore})[^{deleteAfter}]*");
             return match.Value;
         }
 

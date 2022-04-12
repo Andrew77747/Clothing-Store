@@ -7,7 +7,6 @@ namespace ClothingStore.Framework.PageObject.Pages
 {
     public class PromotionsPage : BasePage
     {
-
         public PromotionsPage(IWebDriverManager manager) : base(manager)
         {
 
@@ -68,7 +67,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         public int GetPromotionsMaxCount()
         {
             string paginatorCountText = Wrapper.GetElementText(_paginatorCount);
-            string textTotalAmonut = Wrapper.CutPartTextFromMiddle(paginatorCountText, "из ", "");
+            string textTotalAmonut = Wrapper.CutFirstPartTextWithAllTextValue(paginatorCountText, "из ");
             int intCutAmount = Convert.ToInt32(textTotalAmonut);
 
             return intCutAmount;

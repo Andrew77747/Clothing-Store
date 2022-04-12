@@ -12,6 +12,7 @@ namespace ClothingStore.Tests.Scenarios
     {
         private readonly Header _header;
         private readonly PromotionsPage _promotionsPage;
+        private int _countPromotions;
 
         public PromotionsSteps(WebDriverManager manager)
         {
@@ -28,13 +29,13 @@ namespace ClothingStore.Tests.Scenarios
         [When(@"I switch paginator on promotion pages")]
         public void WhenISwitchPaginatorOnPromotionPages()
         {
-            _promotionsPage.CountPromotions();
+            _countPromotions = _promotionsPage.CountPromotions();
         }
         
         [Then(@"Amount of prmotions is correct")]
         public void ThenAmountOfPrmotionsIsCorrect()
         {
-            Assert.AreEqual(_promotionsPage.GetPromotionsMaxCount(), _promotionsPage.CountPromotions(), "Promotion amounts must be equal");
+            Assert.AreEqual(_promotionsPage.GetPromotionsMaxCount(), _countPromotions, "Promotion amounts must be equal");
         }
     }
 }

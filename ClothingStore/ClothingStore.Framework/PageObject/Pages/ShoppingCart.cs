@@ -82,14 +82,14 @@ namespace ClothingStore.Framework.PageObject.Pages
         public string GetDeliveryMethod()
         {
             string textDeliveryMethod = Wrapper.GetElementText(_activeDeliveryMethod);
-            string parttextDeliveryMethod = Wrapper.CutLastPartText(textDeliveryMethod, ",");
+            string parttextDeliveryMethod = Wrapper.CutLastPartTextWithAllTextValue(textDeliveryMethod, ",");
             return parttextDeliveryMethod;
         }
 
         public string GetPaymentMethod()
         {
             string textPaymentMethod = Wrapper.GetElementText(_activePaymentMethod);
-            string parttexPaymentMethod = Wrapper.CutLastPartText(textPaymentMethod, ",");
+            string parttexPaymentMethod = Wrapper.CutLastPartTextWithAllTextValue(textPaymentMethod, ",");
             return parttexPaymentMethod;
         }
     }
