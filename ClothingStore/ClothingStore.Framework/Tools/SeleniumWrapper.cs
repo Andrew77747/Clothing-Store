@@ -196,6 +196,20 @@ namespace ClothingStore.Framework.Tools
             action.MoveToElement(FindElement(selector)).Build().Perform();
         }
 
+        public void MoveElement(By selector, int x, int y)
+        {
+            try
+            {
+                Actions action = new Actions(_driver);
+                action.MoveToElement(FindElement(selector)).ClickAndHold().MoveByOffset(x, y).Release().Perform();
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("There is no such element! Error: " + e);
+            }
+        }
+
+
         public List<IWebElement> GetElements(By selector)
         {
             return _driver.FindElements(selector).ToList();

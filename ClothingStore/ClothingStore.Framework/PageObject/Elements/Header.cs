@@ -27,6 +27,7 @@ namespace ClothingStore.Framework.PageObject.Elements
         private By _videocamerasLinkInCatalog = By.CssSelector("[title='Перейти в категорию «Видеокамеры»']");
         private By _catalogPanel = By.CssSelector(".catalogLine__panel");
         private By _promotionsBtn = By.CssSelector(".header__button.header__buttonActions");
+        private By _cityLink = By.CssSelector("[title='Выбрать город']");
 
         #endregion
 
@@ -77,6 +78,27 @@ namespace ClothingStore.Framework.PageObject.Elements
         public void ClickPromotions()
         {
             Wrapper.ClickElement(_promotionsBtn);
+        }
+
+        public void ClickCityLink()
+        {
+            Wrapper.ClickElement(_cityLink);
+        }
+
+        public void ChooseCity(string cityName)
+        {
+            Wrapper.ClickElement(_cityLink);
+            Wrapper.ClickElement(By.CssSelector($"[title='{cityName}']"));
+        }
+
+        public string GetCityName()
+        {
+            return Wrapper.GetElementText(_cityLink);
+        }
+
+        public void ClickTopMenuItem(string menuItem)
+        {
+            Wrapper.ClickElement(By.CssSelector($"[title='{menuItem}']"));
         }
     }
 }
