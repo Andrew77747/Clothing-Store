@@ -53,5 +53,12 @@ namespace ClothingStore.Tests.Handlers
             _header.HoverMouseOnSideMenuElement(text);
         }
 
+        [When(@"I click '(.*)' menu item")]
+        [Given(@"I click '(.*)' menu item")]
+        public void GivenIClickMenuItem(string item)
+        {
+            _header.ClickTopMenuItem(item);
+        }
+
     }
 }

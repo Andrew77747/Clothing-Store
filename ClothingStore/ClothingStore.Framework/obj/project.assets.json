@@ -79,6 +79,15 @@
           "build/NUnit.props": {}
         }
       },
+      "OpenDialogWindowHandler/0.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/OpenDialogWindowHandler.dll": {}
+        },
+        "runtime": {
+          "lib/net45/OpenDialogWindowHandler.dll": {}
+        }
+      },
       "Selenium.Support/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -401,6 +410,21 @@
         "nunit.nuspec"
       ]
     },
+    "OpenDialogWindowHandler/0.0.0.1": {
+      "sha512": "VnOGie5TQYXUrNt21jKxMHhSSdsRg3m1uzKU8x9Z/LNNrYgOH913UW8jTf035LJjJ3r1GyeU5j4A6SqyUu+3JQ==",
+      "type": "package",
+      "path": "opendialogwindowhandler/0.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ReadMe.txt",
+        "content/ReadMe.txt",
+        "lib/net45/OpenDialogWindowHandler.dll",
+        "lib/net45/OpenDialogWindowHandler.xml",
+        "opendialogwindowhandler.0.0.0.1.nupkg.sha512",
+        "opendialogwindowhandler.nuspec"
+      ]
+    },
     "Selenium.Support/4.1.0": {
       "sha512": "wuK5cfgVaimOZqyuriY2geGpNsI9DWky8CuBlrkBnmebkSrRftxqwyUVy0NLooHaAB2iaMj7qM+VOdUEX5bCHQ==",
       "type": "package",
@@ -505,6 +529,7 @@
       "Infrastructure >= 1.0.0",
       "Microsoft.Extensions.Logging.Abstractions >= 6.0.1",
       "NUnit >= 3.13.3",
+      "OpenDialogWindowHandler >= 0.0.0.1",
       "Selenium.Support >= 4.1.0",
       "Selenium.WebDriver >= 4.1.0"
     ]
@@ -564,6 +589,10 @@
             "target": "Package",
             "version": "[3.13.3, )"
           },
+          "OpenDialogWindowHandler": {
+            "target": "Package",
+            "version": "[0.0.0.1, )"
+          },
           "Selenium.Support": {
             "target": "Package",
             "version": "[4.1.0, )"
@@ -591,5 +620,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"OpenDialogWindowHandler 0.0.0.1\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net5.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "OpenDialogWindowHandler",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

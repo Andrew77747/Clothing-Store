@@ -53,6 +53,26 @@ namespace ClothingStore.Framework.Tools
             FindElement(by).SendKeys(text);
         }
 
+        //public void AttachFile(WebDriver driver, By locator, string file)
+        //{
+        //    IWebElement input = FindElement(locator);
+        //    //WebElement input = driver.findElement(locator);
+        //    Unhide(driver, input);
+        //    input.SendKeys(file);
+        //}
+
+        //private void Unhide(WebDriver driver, IWebElement element)
+        //{
+        //    String script = "arguments[0].style.opacity=1;"
+        //                    + "arguments[0].style['transform']='translate(0px, 0px) scale(1)';"
+        //                    + "arguments[0].style['MozTransform']='translate(0px, 0px) scale(1)';"
+        //                    + "arguments[0].style['WebkitTransform']='translate(0px, 0px) scale(1)';"
+        //                    + "arguments[0].style['msTransform']='translate(0px, 0px) scale(1)';"
+        //                    + "arguments[0].style['OTransform']='translate(0px, 0px) scale(1)';"
+        //                    + "return true;";
+        //    ((IJavaScriptExecutor)driver).ExecuteScript(script, element);
+        //}
+
         public void SendKeysWithEscape(By by, string text)
         {
             FindElement(by).SendKeys(text + Keys.Escape);
@@ -466,8 +486,18 @@ namespace ClothingStore.Framework.Tools
 
         public bool VerifyExpectedTitleIsDisplayed(By by, string text)
         {
-            var textFromElement = _driver.FindElement(by).Text;
+            var textFromElement = FindElement(by).Text;
             return textFromElement.Contains(text);
+        }
+
+        public bool VerifyExpectedTitleIsDisplayedFull(By by, string text)
+        {
+            var textFromElement = FindElement(by).Text;
+            if (textFromElement == text)
+            {
+                return true;
+            }
+            return false;
         }
 
 

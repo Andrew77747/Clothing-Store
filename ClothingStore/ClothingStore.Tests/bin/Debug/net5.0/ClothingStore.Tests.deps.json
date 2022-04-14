@@ -19,6 +19,7 @@
           "Microsoft.NET.Test.Sdk": "17.1.0",
           "NUnit": "3.13.3",
           "NUnit3TestAdapter": "4.2.1",
+          "OpenDialogWindowHandler": "0.0.0.1",
           "SpecFlow": "3.9.58",
           "SpecFlow.NUnit": "3.9.58",
           "SpecFlow.NUnit.Runners": "3.9.58",
@@ -653,6 +654,14 @@
       "NUnit.Extension.TeamCityEventListener/1.0.7": {},
       "NUnit.Extension.VSProjectLoader/3.8.0": {},
       "NUnit3TestAdapter/4.2.1": {},
+      "OpenDialogWindowHandler/0.0.0.1": {
+        "runtime": {
+          "lib/net45/OpenDialogWindowHandler.dll": {
+            "assemblyVersion": "0.0.0.1",
+            "fileVersion": "0.0.0.1"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
@@ -1317,6 +1326,7 @@
           "Infrastructure": "1.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "NUnit": "3.13.3",
+          "OpenDialogWindowHandler": "0.0.0.1",
           "Selenium.Support": "4.1.0",
           "Selenium.WebDriver": "4.1.0"
         },
@@ -1644,6 +1654,13 @@
       "sha512": "sha512-kgH8VKsrcZZgNGQXRpVCrM7TnNz9li3b/snH+YmnXUNqsaWa1Xw9EQWHpbzq4Li2FbTjTE/E5N5HdLNXzZ8BpQ==",
       "path": "nunit3testadapter/4.2.1",
       "hashPath": "nunit3testadapter.4.2.1.nupkg.sha512"
+    },
+    "OpenDialogWindowHandler/0.0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VnOGie5TQYXUrNt21jKxMHhSSdsRg3m1uzKU8x9Z/LNNrYgOH913UW8jTf035LJjJ3r1GyeU5j4A6SqyUu+3JQ==",
+      "path": "opendialogwindowhandler/0.0.0.1",
+      "hashPath": "opendialogwindowhandler.0.0.0.1.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "type": "package",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c2uvxECryAU5rveo8qfU9JmGM/hIz5oC4XMx7Z2bKPobk5lPoRnhBANcwmoss+ryRtZkTxRQ8DVa7qFauWqizQ==",
+  "dgSpecHash": "G2VUcdr9DT5/MBfTk1/pVm87K/tlsxhTUGkuc0i2lAp77swHSWEyWDarmq3I8OUk2sK7ob3ehXU40Idou6weQQ==",
   "success": true,
   "projectFilePath": "C:\\Git\\Clothing-Store\\ClothingStore\\ClothingStore.Tests\\ClothingStore.Tests.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,7 @@
     "C:\\Users\\andy7\\.nuget\\packages\\nunit.extension.teamcityeventlistener\\1.0.7\\nunit.extension.teamcityeventlistener.1.0.7.nupkg.sha512",
     "C:\\Users\\andy7\\.nuget\\packages\\nunit.extension.vsprojectloader\\3.8.0\\nunit.extension.vsprojectloader.3.8.0.nupkg.sha512",
     "C:\\Users\\andy7\\.nuget\\packages\\nunit3testadapter\\4.2.1\\nunit3testadapter.4.2.1.nupkg.sha512",
+    "C:\\Users\\andy7\\.nuget\\packages\\opendialogwindowhandler\\0.0.0.1\\opendialogwindowhandler.0.0.0.1.nupkg.sha512",
     "C:\\Users\\andy7\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\andy7\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\andy7\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -125,5 +126,16 @@
     "C:\\Users\\andy7\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\andy7\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"OpenDialogWindowHandler 0.0.0.1\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net5.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "OpenDialogWindowHandler",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

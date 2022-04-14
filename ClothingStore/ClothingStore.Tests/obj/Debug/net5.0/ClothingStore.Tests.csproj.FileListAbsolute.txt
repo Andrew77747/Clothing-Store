@@ -141,3 +141,4 @@ C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\Clothin
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\ref\ClothingStore.Tests.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\ClothingStore.Tests.pdb
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\ClothingStore.Tests.genruntimeconfig.cache
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\OpenDialogWindowHandler.dll

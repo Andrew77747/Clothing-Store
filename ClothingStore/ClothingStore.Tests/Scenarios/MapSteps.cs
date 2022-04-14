@@ -19,12 +19,6 @@ namespace ClothingStore.Tests.Scenarios
             _pointsOfIssues = new PointsOfIssues(manager);
         }
 
-        [When(@"I click '(.*)' menu item")]
-        public void GivenIClickMenuItem(string item)
-        {
-            _header.ClickTopMenuItem(item);
-        }
-
 
         [When(@"I click show map")]
         public void WhenIClickShowMap()

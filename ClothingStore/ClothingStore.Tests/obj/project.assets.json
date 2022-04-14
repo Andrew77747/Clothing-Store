@@ -759,6 +759,15 @@
           "build/netcoreapp2.1/NUnit3TestAdapter.props": {}
         }
       },
+      "OpenDialogWindowHandler/0.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/OpenDialogWindowHandler.dll": {}
+        },
+        "runtime": {
+          "lib/net45/OpenDialogWindowHandler.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
         "type": "package",
         "runtimeTargets": {
@@ -1939,6 +1948,7 @@
           "Infrastructure": "1.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "NUnit": "3.13.3",
+          "OpenDialogWindowHandler": "0.0.0.1",
           "Selenium.Support": "4.1.0",
           "Selenium.WebDriver": "4.1.0"
         },
@@ -3518,6 +3528,21 @@
         "build/netcoreapp2.1/testcentric.engine.metadata.dll",
         "nunit3testadapter.4.2.1.nupkg.sha512",
         "nunit3testadapter.nuspec"
+      ]
+    },
+    "OpenDialogWindowHandler/0.0.0.1": {
+      "sha512": "VnOGie5TQYXUrNt21jKxMHhSSdsRg3m1uzKU8x9Z/LNNrYgOH913UW8jTf035LJjJ3r1GyeU5j4A6SqyUu+3JQ==",
+      "type": "package",
+      "path": "opendialogwindowhandler/0.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ReadMe.txt",
+        "content/ReadMe.txt",
+        "lib/net45/OpenDialogWindowHandler.dll",
+        "lib/net45/OpenDialogWindowHandler.xml",
+        "opendialogwindowhandler.0.0.0.1.nupkg.sha512",
+        "opendialogwindowhandler.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -6847,6 +6872,7 @@
       "Microsoft.NET.Test.Sdk >= 17.1.0",
       "NUnit >= 3.13.3",
       "NUnit3TestAdapter >= 4.2.1",
+      "OpenDialogWindowHandler >= 0.0.0.1",
       "SpecFlow >= 3.9.58",
       "SpecFlow.NUnit >= 3.9.58",
       "SpecFlow.NUnit.Runners >= 3.9.58",
@@ -6935,6 +6961,10 @@
             "target": "Package",
             "version": "[4.2.1, )"
           },
+          "OpenDialogWindowHandler": {
+            "target": "Package",
+            "version": "[0.0.0.1, )"
+          },
           "SpecFlow": {
             "target": "Package",
             "version": "[3.9.58, )"
@@ -6970,5 +7000,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"OpenDialogWindowHandler 0.0.0.1\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net5.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "OpenDialogWindowHandler",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

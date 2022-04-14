@@ -110,6 +110,10 @@
               "target": "Package",
               "version": "[3.13.3, )"
             },
+            "OpenDialogWindowHandler": {
+              "target": "Package",
+              "version": "[0.0.0.1, )"
+            },
             "Selenium.Support": {
               "target": "Package",
               "version": "[4.1.0, )"
@@ -216,6 +220,10 @@
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.2.1, )"
+            },
+            "OpenDialogWindowHandler": {
+              "target": "Package",
+              "version": "[0.0.0.1, )"
             },
             "SpecFlow": {
               "target": "Package",
