@@ -27,7 +27,6 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _sideUserMenu = By.CssSelector(".content__leftColumn");
         private By _userIcon = By.CssSelector(".huab__cell__text.orange");
         private By _accountEmail = By.XPath("//*[contains(text(), 'E-mail:')]/..");
-        //private By _loginBtn = By.CssSelector(".huab__cell.huab__cell__member");
 
         #endregion
 

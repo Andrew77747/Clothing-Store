@@ -19,7 +19,8 @@ namespace ClothingStore.Framework.Tools
         public SeleniumWrapper(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;
-            _wait = wait;
+            //_wait = wait;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             _customDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
         }
 
@@ -53,25 +54,10 @@ namespace ClothingStore.Framework.Tools
             FindElement(by).SendKeys(text);
         }
 
-        //public void AttachFile(WebDriver driver, By locator, string file)
-        //{
-        //    IWebElement input = FindElement(locator);
-        //    //WebElement input = driver.findElement(locator);
-        //    Unhide(driver, input);
-        //    input.SendKeys(file);
-        //}
-
-        //private void Unhide(WebDriver driver, IWebElement element)
-        //{
-        //    String script = "arguments[0].style.opacity=1;"
-        //                    + "arguments[0].style['transform']='translate(0px, 0px) scale(1)';"
-        //                    + "arguments[0].style['MozTransform']='translate(0px, 0px) scale(1)';"
-        //                    + "arguments[0].style['WebkitTransform']='translate(0px, 0px) scale(1)';"
-        //                    + "arguments[0].style['msTransform']='translate(0px, 0px) scale(1)';"
-        //                    + "arguments[0].style['OTransform']='translate(0px, 0px) scale(1)';"
-        //                    + "return true;";
-        //    ((IJavaScriptExecutor)driver).ExecuteScript(script, element);
-        //}
+        public void UploadFiles(By selector, string path)
+        {
+            _driver.FindElement(selector).SendKeys(path);
+        }
 
         public void SendKeysWithEscape(By by, string text)
         {
@@ -286,7 +272,7 @@ namespace ClothingStore.Framework.Tools
         {
             try
             {
-                _driver.FindElement(By.XPath($"//*[contains(text(), '{text}')]"));
+                FindElement(By.XPath($"//*[contains(text(), '{text}')]"));
                 Console.WriteLine($"Злобный Гурч злобно видит текст {text}");
                 return true;
             }
@@ -493,7 +479,7 @@ namespace ClothingStore.Framework.Tools
         public bool VerifyExpectedTitleIsDisplayedFull(By by, string text)
         {
             var textFromElement = FindElement(by).Text;
-            if (textFromElement == text)
+            if (textFromElement.Equals(text))
             {
                 return true;
             }
