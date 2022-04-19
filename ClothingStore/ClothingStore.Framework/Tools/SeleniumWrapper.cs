@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
+using OpenQA.Selenium.DevTools.V85.SystemInfo;
 
 namespace ClothingStore.Framework.Tools
 {
@@ -19,8 +20,8 @@ namespace ClothingStore.Framework.Tools
         public SeleniumWrapper(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;
-            //_wait = wait;
-            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            _wait = wait;
+            //_wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             _customDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
         }
 
@@ -105,8 +106,8 @@ namespace ClothingStore.Framework.Tools
 
         public List<string> GetElementsTextList(By selector)
         {
-            var allElementsWithText = _driver.FindElements(selector);
-            List<string> names = new List<string>();
+            var allElementsWithText = FindElements(selector);
+            List<string> names = new();
 
             foreach (var oneElementWithText in allElementsWithText)
             {
@@ -215,7 +216,6 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
-
         public List<IWebElement> GetElements(By selector)
         {
             return _driver.FindElements(selector).ToList();
@@ -286,6 +286,28 @@ namespace ClothingStore.Framework.Tools
         public string GetValuesOfAttribute(By by, string value)
         {
             return _driver.FindElement(by).GetAttribute(value);
+        }
+
+        public string[] GetValuesOfAttributeList(By selector, string value, By selector2)
+        {
+            //var allElementsWithText = GetElements(selector);
+            //string[] names = new string[allElementsWithText.Count];
+            List<IWebElement> ElementsWithNamesAttribute = GetElements(selector);
+            string[] names = new string[ElementsWithNamesAttribute.Count];
+            //List<string> names = new List<string>();
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = GetValuesOfAttribute(selector2, value);
+                Console.WriteLine(names[i]);
+            }
+
+            //foreach (var name in names)
+            //{
+            //    name = GetValuesOfAttribute(selector, value);
+            //}
+
+            return names;
         }
 
         public bool IsAttributeValueEqual(By selector, string text)

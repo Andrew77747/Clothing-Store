@@ -1,4 +1,5 @@
-﻿using ClothingStore.Framework.PageObject.Elements;
+﻿using System.Threading;
+using ClothingStore.Framework.PageObject.Elements;
 using ClothingStore.Framework.PageObject.Pages;
 using ClothingStore.Framework.Tools;
 using NUnit.Framework;
@@ -13,6 +14,8 @@ namespace ClothingStore.Tests.Handlers
         private readonly Header _header;
         private readonly AuthorizationPage _authorizationPage;
         private readonly ShoppingCart _shoppingCart;
+        private readonly PersonalArea _personalArea;
+        private readonly PersonalAreaViewedGoodsPage _personalAreaViewedGoods;
 
         public BaseSteps(WebDriverManager manager, ConfigurationManager configuration)
         {
@@ -20,6 +23,8 @@ namespace ClothingStore.Tests.Handlers
             _authorizationPage = new AuthorizationPage(manager, configuration.GetSettings());
             _header = new Header(manager);
             _shoppingCart = new ShoppingCart(manager);
+            _personalArea = new PersonalArea(manager);
+            _personalAreaViewedGoods = new PersonalAreaViewedGoodsPage(manager);
         }
 
         [Given(@"I'm on the main page")]
@@ -35,6 +40,7 @@ namespace ClothingStore.Tests.Handlers
             _shoppingCart.CleanShoppingCart();
         }
 
+        [Given(@"I choose '(.*)' in catalog")]
         [When(@"I choose '(.*)' in catalog")]
         public void WhenIChooseInCatalog(string name)
         {
@@ -59,6 +65,5 @@ namespace ClothingStore.Tests.Handlers
         {
             _header.ClickTopMenuItem(item);
         }
-
     }
 }

@@ -17,7 +17,7 @@ namespace ClothingStore.Framework.PageObject.Elements
 
         #region Maps of Elements
 
-        private By _loginBtn = By.CssSelector(".huab__cell.huab__cell__member");
+        private By _personalAreaBtn = By.CssSelector(".huab__cell.huab__cell__member");
         private By _searchInput = By.CssSelector(".header__search__inputText.js__header__search__inputText");
         private By _searchResultList = By.CssSelector(".fastResult__listItem__link");
         private By _searchingPhone = By.CssSelector("[data-cattitle='Смартфон Apple iPhone 11 128 GB Чёрный']");
@@ -28,13 +28,14 @@ namespace ClothingStore.Framework.PageObject.Elements
         private By _catalogPanel = By.CssSelector(".catalogLine__panel");
         private By _promotionsBtn = By.CssSelector(".header__button.header__buttonActions");
         private By _cityLink = By.CssSelector("[title='Выбрать город']");
+        private By _logo = By.CssSelector(".logo");
 
         #endregion
 
 
-        public void ClickLogin()
+        public void ClickLoginOrPersonalAreaBtn()
         {
-            Wrapper.ClickElement(_loginBtn);
+            Wrapper.ClickElement(_personalAreaBtn);
         }
 
         public void SelectGood(string text)
@@ -64,7 +65,7 @@ namespace ClothingStore.Framework.PageObject.Elements
 
         public void ChooseCatalogItem(string itemName)
         {
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             Wrapper.WaitElementDisplayed(By.XPath($"//a[text()= '{itemName}']"));
             Wrapper.ClickElement(By.XPath($"//a[text()= '{itemName}']"));
         }
@@ -99,6 +100,11 @@ namespace ClothingStore.Framework.PageObject.Elements
         public void ClickTopMenuItem(string menuItem)
         {
             Wrapper.ClickElement(By.CssSelector($"[title='{menuItem}']"));
+        }
+
+        public void ClickLogo()
+        {
+            Wrapper.ClickElement(_logo);
         }
     }
 }

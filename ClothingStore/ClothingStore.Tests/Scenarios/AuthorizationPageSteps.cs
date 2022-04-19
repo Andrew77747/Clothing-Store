@@ -24,7 +24,7 @@ namespace ClothingStore.Tests.Scenarios
         [Given(@"I go to the authorization page")]
         public void GivenIGoToTheAuthorizationPage()
         {
-            _header.ClickLogin();
+            _header.ClickLoginOrPersonalAreaBtn();
         }
 
         [Given(@"I login")]
@@ -39,7 +39,7 @@ namespace ClothingStore.Tests.Scenarios
         //[Given(@"I go to the authorization page")]
         //public void GivenIGoToTheAuthorizationPage()
         //{
-        //    _mainPage.ClickLogin();
+        //    _mainPage.ClickLoginOrPersonalAreaBtn();
         //}
 
         //[When(@"I login")]
@@ -51,12 +51,12 @@ namespace ClothingStore.Tests.Scenarios
         [When(@"I go to personal area")]
         public void WhenIGoToPersonalArea()
         {
-            _authorizationPage.GoToPersonalArea();
+            _header.ClickLoginOrPersonalAreaBtn();
         }
 
 
         [Then(@"I'm in my account")]
-        public void ThenIMInMyAccount()
+        public void ThenImInMyAccount()
         {
             Assert.IsTrue(_authorizationPage.IsUserLogin(), "User is not Login!");
         }

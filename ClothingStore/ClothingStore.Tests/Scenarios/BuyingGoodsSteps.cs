@@ -57,6 +57,7 @@ namespace ClothingStore.Tests.Scenarios
             Assert.IsTrue(_shoppingCart.IsGoodAdded(model), "Good is not found!");
         }
 
+        [Given(@"I click title product card with buy button")]
         [When(@"I click title product card with buy button")]
         public void WhenIClickTitleProductCardWithBuyButton()
         {

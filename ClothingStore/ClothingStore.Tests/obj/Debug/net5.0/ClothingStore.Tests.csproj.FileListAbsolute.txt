@@ -50,6 +50,7 @@ C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\Microso
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\NuGet.Frameworks.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\nunit.framework.dll
+C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\OpenDialogWindowHandler.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\WebDriver.Support.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\WebDriver.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\TechTalk.SpecFlow.dll
@@ -141,4 +142,3 @@ C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\Clothin
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\ref\ClothingStore.Tests.dll
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\ClothingStore.Tests.pdb
 C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\obj\Debug\net5.0\ClothingStore.Tests.genruntimeconfig.cache
-C:\Git\Clothing-Store\ClothingStore\ClothingStore.Tests\bin\Debug\net5.0\OpenDialogWindowHandler.dll

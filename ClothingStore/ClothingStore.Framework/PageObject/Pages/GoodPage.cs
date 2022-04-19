@@ -13,7 +13,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         #region Maps of Elements
 
         private By _buyBtn = By.CssSelector(".catalog__displayedItem__button .button.button__orange");
-        private By _gooProductTitle = By.CssSelector(".productPage__card [itemprop='name']");
+        private By _goodProductTitle = By.CssSelector(".productPage__card [itemprop='name']");
 
         #endregion
 
@@ -24,8 +24,7 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         public string GetGoodName()
         {
-            //return Wrapper.GetElementText(By.CssSelector(".addedToCart_itemInfo__data"));
-            return Wrapper.GetElementText(_gooProductTitle);
+            return Wrapper.GetElementText(_goodProductTitle);
         }
     }
 }
