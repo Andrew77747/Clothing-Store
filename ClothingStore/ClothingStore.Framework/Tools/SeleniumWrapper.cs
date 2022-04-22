@@ -3,11 +3,9 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
-using NUnit.Framework;
-using OpenQA.Selenium.DevTools.V85.SystemInfo;
+using SeleniumExtras.WaitHelpers;
 
 namespace ClothingStore.Framework.Tools
 {
@@ -21,6 +19,8 @@ namespace ClothingStore.Framework.Tools
         {
             _driver = driver;
             _wait = wait;
+            //_wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             //_wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             _customDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
         }
@@ -513,10 +513,43 @@ namespace ClothingStore.Framework.Tools
 
         #region Waiters
 
+        public void WaitPageLoaded(By by1, By by2, By by3)
+        {
+            _wait.Until(d => IsPageLoaded(by1, by2, by3));
+        }
+
         public void WaitElementDisplayed(By by)
         {
             WaitElement(by);
             _wait.Until(d => IsElementDisplayed(by));
+        }
+
+        public void WaitElementInvisible(By by) //
+        {
+            //WaitElement(by);
+            ////_wait.Until(d => IsElementNotDisplayed(by));
+            //_wait.Until(ExpectedConditions.StalenessOf(FindElement(By.CssSelector(by))));
+            _wait.Until(ExpectedConditions.InvisibilityOfElementLocated(by));
+        }
+
+        public void WaitElementInvisible2(By by) //
+        {
+            //WaitElement(by);
+            //_wait.Until(d => IsElementNotDisplayed(by));
+            _wait.Until(d => IsElementNotDisplayed(by));
+        }
+
+        public void WaitElementMinus(By by) //
+        {
+            var callFlows = FindElements(by);
+            _wait.Until(d => d.FindElements(by).Count == callFlows.Count - 1);
+        }
+
+        public void WaitForElementNotExist(IWebElement element)
+        {
+            //var wait = new WebDriverWait(browser.WebDriver, TimeSpan.FromSeconds(timeout));
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(DefaultPollingValue);
+            _wait.Until(d => IsElementNotDisplayedElem(element));
         }
 
         public void WaitElement(By by)
@@ -579,6 +612,46 @@ namespace ClothingStore.Framework.Tools
             catch (NoSuchElementException)
             {
                 return false;
+            }
+        }
+
+        public bool IsElementNotDisplayed(By by) //
+        {
+            try
+            {
+                return (_driver.FindElement(by).Displayed);
+            }
+            catch (NoSuchElementException e)
+            {
+                // Returns true because the element is not present in DOM. The
+                // try block checks if the element is present but is invisible.
+                return true;
+            }
+            catch (StaleElementReferenceException e)
+            {
+                // Returns true because stale element reference implies that element
+                // is no longer visible.
+                return true;
+            }
+        }
+
+        public bool IsElementNotDisplayedElem(IWebElement element) //
+        {
+            try
+            {
+                return element.Displayed;
+            }
+            catch (NoSuchElementException e)
+            {
+                // Returns true because the element is not present in DOM. The
+                // try block checks if the element is present but is invisible.
+                return true;
+            }
+            catch (StaleElementReferenceException e)
+            {
+                // Returns true because stale element reference implies that element
+                // is no longer visible.
+                return true;
             }
         }
 

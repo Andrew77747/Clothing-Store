@@ -13,12 +13,18 @@ namespace ClothingStore.Framework.PageObject.Pages
         #region Map of Elements
 
         private By _viewedGoodsLink = By.CssSelector("[title='Вы смотрели']");
+        private By _bookmarksLink = By.CssSelector("[title='Закладки']");
 
         #endregion
 
         public void ClickViewedGoodsLink()
         {
             Wrapper.ClickElement(_viewedGoodsLink);
+        }
+
+        public void ClickBookmarks()
+        {
+            Wrapper.ClickElement(_bookmarksLink);
         }
     }
 }

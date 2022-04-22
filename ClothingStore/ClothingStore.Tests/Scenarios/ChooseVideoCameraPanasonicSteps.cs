@@ -50,7 +50,6 @@ namespace ClothingStore.Tests.Scenarios
         {
             _digitalVideoCameras.ClickSorting();
             _digitalVideoCameras.ChooseSortingByPriceAsc();
-            Thread.Sleep(3000);
         }
 
         [Then(@"I see only Panasonic videocameras sorting by price asc")]

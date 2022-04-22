@@ -112,13 +112,13 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 10
- testRunner.Given("I find \'Смартфон Apple iPhone 11 128 GB Чёрный\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I find \'Смартфон Apple iPhone 13 mini 128GB Тёмная ночь\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
  testRunner.When("I add good to shopping cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("\'Смартфон Apple iPhone 11 128 GB Чёрный\' is in shopping cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Смартфон Apple iPhone 13 mini 128GB Тёмная ночь\' is in shopping cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.And("I clean shopping cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

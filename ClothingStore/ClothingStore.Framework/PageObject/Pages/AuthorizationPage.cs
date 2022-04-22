@@ -12,7 +12,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         private string userInitialInIcon = "AN";
 
         public AuthorizationPage(IWebDriverManager manager, Appsettings settings) : base(manager)
-        {
+        {   
             _settings = settings;
         }
 
@@ -21,11 +21,13 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _userInputEmail = By.Name("login");
         private By _userInputPassword = By.Name("password");
         private By _logginBtn = By.Name("submit");
-        private By _personalAreaBtn = By.CssSelector(".huab__cell.huab__cell__member");
+        //private By _personalAreaBtn = By.CssSelector(".huab__cell.huab__cell__member");
         private By _personalAreaHeader = By.CssSelector(".content__header");
         private By _userAccountInfo = By.CssSelector(".userInfo");
         private By _sideUserMenu = By.CssSelector(".content__leftColumn");
         private By _userIcon = By.CssSelector(".huab__cell__text.orange");
+        private By _codeVerify = By.CssSelector("[title='Код подтверждения']");
+        private By _codeInput = By.CssSelector("[name='captcha']");
         private By _accountEmail = By.XPath("//*[contains(text(), 'E-mail:')]/..");
 
         #endregion
@@ -35,14 +37,21 @@ namespace ClothingStore.Framework.PageObject.Pages
             //Wrapper.ClickElement(_loginBtn);
             Wrapper.TypeAndSend(_userInputEmail, _settings.Email);
             Wrapper.TypeAndSend(_userInputPassword, _settings.Password);
+            //Thread.Sleep(5000);
+            //if (Wrapper.IsElementExists(_codeVerify))
+            //{
+            //    string code = Wrapper.GetElementText(_codeVerify);
+            //    Wrapper.TypeAndSend(_codeInput, code);
+            //}
             Wrapper.ClickElement(_logginBtn);
+
             return Wrapper.VerifyExpectedTitleIsDisplayed(_userIcon, userInitialInIcon);
         }
 
-        public void GoToPersonalArea()
-        {
-            Wrapper.ClickElement(_personalAreaBtn);
-        }
+        //public void GoToPersonalArea()
+        //{
+        //    Wrapper.ClickElement(_personalAreaBtn);
+        //}
 
         public bool IsUserLogin()
         {

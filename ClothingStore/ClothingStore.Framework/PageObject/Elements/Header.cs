@@ -29,6 +29,8 @@ namespace ClothingStore.Framework.PageObject.Elements
         private By _promotionsBtn = By.CssSelector(".header__button.header__buttonActions");
         private By _cityLink = By.CssSelector("[title='Выбрать город']");
         private By _logo = By.CssSelector(".logo");
+        private By _favoriteCount = By.CssSelector(".huab__cell__text.js__bookmarksCount");
+        private By _favoriteBtn = By.CssSelector(".huab__cell.huab__cell__bookmark");
 
         #endregion
 
@@ -105,6 +107,19 @@ namespace ClothingStore.Framework.PageObject.Elements
         public void ClickLogo()
         {
             Wrapper.ClickElement(_logo);
+        }
+
+        public int GetFavoriteCount()
+        {
+            string favoriteCountStr = Wrapper.GetElementText(_favoriteCount);
+            int favoriteCountInt = Convert.ToInt32(favoriteCountStr);
+            Console.WriteLine(favoriteCountInt);
+            return favoriteCountInt;
+        }
+
+        public void ClickFavoriteBtn()
+        {
+            Wrapper.ClickElement(_favoriteBtn);
         }
     }
 }

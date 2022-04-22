@@ -7,9 +7,9 @@ Background:
 	Then I clean shopping cart
 
 Scenario: Add good to shopping cart
-	Given I find 'Смартфон Apple iPhone 11 128 GB Чёрный'
+	Given I find 'Смартфон Apple iPhone 13 mini 128GB Тёмная ночь'
 	When I add good to shopping cart
-	Then 'Смартфон Apple iPhone 11 128 GB Чёрный' is in shopping cart
+	Then 'Смартфон Apple iPhone 13 mini 128GB Тёмная ночь' is in shopping cart
 	And I clean shopping cart
 
 Scenario: Add goods to shopping cart and make order
