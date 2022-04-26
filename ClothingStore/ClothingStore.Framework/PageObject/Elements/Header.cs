@@ -67,7 +67,7 @@ namespace ClothingStore.Framework.PageObject.Elements
 
         public void ChooseCatalogItem(string itemName)
         {
-            //Thread.Sleep(1000);
+            Thread.Sleep(1000);
             Wrapper.WaitElementDisplayed(By.XPath($"//a[text()= '{itemName}']"));
             Wrapper.ClickElement(By.XPath($"//a[text()= '{itemName}']"));
         }

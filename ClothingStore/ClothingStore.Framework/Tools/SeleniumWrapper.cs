@@ -3,6 +3,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using SeleniumExtras.WaitHelpers;
@@ -288,6 +289,11 @@ namespace ClothingStore.Framework.Tools
             return _driver.FindElement(by).GetAttribute(value);
         }
 
+        public string GetValuesOfAttribute(IWebElement element, string value)
+        {
+            return element.GetAttribute(value);
+        }
+
         public string[] GetValuesOfAttributeList(By selector, string value, By selector2)
         {
             //var allElementsWithText = GetElements(selector);
@@ -518,13 +524,40 @@ namespace ClothingStore.Framework.Tools
             _wait.Until(d => IsPageLoaded(by1, by2, by3));
         }
 
+        // ждем, что элемент исчезнет из дом
+        public void WaitElementNotExists()
+        {
+
+        }
+
+        // ждем, что элемент не видимый
+        public void WaitElementDisappear(By by)  //// какой правильный?
+        {
+            _wait.Until(d => !d.FindElement(by).Displayed);
+            _wait.Until(d => IsElementNotDisplayed2(by));
+        }
+
+        // bool ждем, что нескольких элементов не будет в доме
+        public void WaitElementNotExists(By by)
+        {
+            _wait.Until(d => d.FindElements(by).Count == 0);
+        }   
+        
+
+        // bool ждем, что нескольких элементов не будут видимыми
+        public void WaitElementsNotVisible(By by)
+        {
+            _wait.Until(d => IsElementsNotExist(by));
+        }
+
         public void WaitElementDisplayed(By by)
         {
             WaitElement(by);
             _wait.Until(d => IsElementDisplayed(by));
         }
 
-        public void WaitElementInvisible(By by) //
+        // Можно ли так использовать?
+        public void WaitElementInvisible(By by)
         {
             //WaitElement(by);
             ////_wait.Until(d => IsElementNotDisplayed(by));
@@ -532,25 +565,32 @@ namespace ClothingStore.Framework.Tools
             _wait.Until(ExpectedConditions.InvisibilityOfElementLocated(by));
         }
 
-        public void WaitElementInvisible2(By by) //
+        //public void WaitElementInvisible2(By by) //
+        //{
+        //    //WaitElement(by);
+        //    //_wait.Until(d => IsElementNotDisplayed(by));
+        //    _wait.Until(d => IsElementNotDisplayed(by));
+        //}
+
+        // как эти два метода ожидания плюс и минус элемент?
+        public void WaitElementMinus(By by)
         {
-            //WaitElement(by);
-            //_wait.Until(d => IsElementNotDisplayed(by));
-            _wait.Until(d => IsElementNotDisplayed(by));
+            var listOfElement = FindElements(by);
+            _wait.Until(d => d.FindElements(by).Count == listOfElement.Count - 1);
         }
 
-        public void WaitElementMinus(By by) //
+        public void WaitElementPlus(By by)
         {
-            var callFlows = FindElements(by);
-            _wait.Until(d => d.FindElements(by).Count == callFlows.Count - 1);
+            var listOfElement = FindElements(by);
+            _wait.Until(d => d.FindElements(by).Count == listOfElement.Count + 1);
         }
 
-        public void WaitForElementNotExist(IWebElement element)
-        {
-            //var wait = new WebDriverWait(browser.WebDriver, TimeSpan.FromSeconds(timeout));
-            //wait.PollingInterval = TimeSpan.FromMilliseconds(DefaultPollingValue);
-            _wait.Until(d => IsElementNotDisplayedElem(element));
-        }
+        //public void WaitForElementNotExist(IWebElement element)
+        //{
+        //    //var wait = new WebDriverWait(browser.WebDriver, TimeSpan.FromSeconds(timeout));
+        //    //wait.PollingInterval = TimeSpan.FromMilliseconds(DefaultPollingValue);
+        //    _wait.Until(d => IsElementNotDisplayedElem(element));
+        //}
 
         public void WaitElement(By by)
         {
@@ -577,6 +617,16 @@ namespace ClothingStore.Framework.Tools
             return false;
         }
 
+        public int ElementCount(By selector)
+        {
+            int totalCountElements = 0;
+
+            var listOfElements = GetElements(selector);
+            totalCountElements += listOfElements.Count;
+
+            return totalCountElements;
+        }
+
         public bool IsElementExists(By by)
         {
             try
@@ -591,17 +641,6 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
-        public int ElementCount(By selector)
-        {
-            int totalCountElements = 0;
-
-            var listOfElements = GetElements(selector);
-            totalCountElements += listOfElements.Count;
-
-            return totalCountElements;
-        }
-
-
         public bool IsElementDisplayed(By by)
         {
             try
@@ -615,45 +654,56 @@ namespace ClothingStore.Framework.Tools
             }
         }
 
-        public bool IsElementNotDisplayed(By by) //
+        //public bool IsElementNotDisplayed(By by) //
+        //{
+        //    try
+        //    {
+        //        return _driver.FindElement(by).Displayed;
+        //    }
+        //    catch (NoSuchElementException)
+        //    {
+        //        // Returns true because the element is not present in DOM. The
+        //        // try block checks if the element is present but is invisible.
+        //        return true;
+        //    }
+        //    catch (StaleElementReferenceException)
+        //    {
+        //        // Returns true because stale element reference implies that element
+        //        // is no longer visible.
+        //        return true;
+        //    }
+        //}
+
+        // 2 bool
+        public bool IsElementsNotExist(By by)  /////////  Хороший метод, что нескольких элементов нет
         {
-            try
+            ReadOnlyCollection<IWebElement> elements = _driver.FindElements(by);
+            if (elements.Count == 0 || !elements[0].Displayed)
             {
-                return (_driver.FindElement(by).Displayed);
-            }
-            catch (NoSuchElementException e)
-            {
-                // Returns true because the element is not present in DOM. The
-                // try block checks if the element is present but is invisible.
                 return true;
             }
-            catch (StaleElementReferenceException e)
-            {
-                // Returns true because stale element reference implies that element
-                // is no longer visible.
-                return true;
-            }
+            return false;
         }
 
-        public bool IsElementNotDisplayedElem(IWebElement element) //
-        {
-            try
-            {
-                return element.Displayed;
-            }
-            catch (NoSuchElementException e)
-            {
-                // Returns true because the element is not present in DOM. The
-                // try block checks if the element is present but is invisible.
-                return true;
-            }
-            catch (StaleElementReferenceException e)
-            {
-                // Returns true because stale element reference implies that element
-                // is no longer visible.
-                return true;
-            }
-        }
+        //public bool IsElementNotDisplayedElem(IWebElement element) //
+        //{
+        //    try
+        //    {
+        //        return element.Displayed;
+        //    }
+        //    catch (NoSuchElementException e)
+        //    {
+        //        // Returns true because the element is not present in DOM. The
+        //        // try block checks if the element is present but is invisible.
+        //        return true;
+        //    }
+        //    catch (StaleElementReferenceException e)
+        //    {
+        //        // Returns true because stale element reference implies that element
+        //        // is no longer visible.
+        //        return true;
+        //    }
+        //}
 
         public bool IsElementDisplayedWithWaiter(By selector)
         {
@@ -671,6 +721,28 @@ namespace ClothingStore.Framework.Tools
             {
                 return false;
             }
+        }
+
+        // 1 bool может try catch
+        public bool IsElementNotDisplayed2(By selector)   //////////////////// Хороший метод для проверки, что элемент не видим
+        {
+            if (!_driver.FindElement(selector).Displayed)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // 0 bool как сделать bool метод, что элемента нет в доме
+        public bool IsElementNotExists(By selector)   //////////////////// 
+        {
+            //if (_driver.FindElement(selector))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool IsElementDisplayedWithCustomWait(By by)

@@ -28,6 +28,8 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _productCard = By.CssSelector(".indexGoods__item");
         private By _productCardTitle = By.CssSelector(".indexGoods__item__name");
         private By _productCardFrame = By.CssSelector(".goods__items.minilisting.borderedTiles");
+        private By _showMoreBtn = By.CssSelector(".js__ajaxExchange.js__ajaxListingMore");
+        private By _paginatorCount = By.CssSelector(".paginator__count");
 
         #endregion
 
@@ -58,6 +60,22 @@ namespace ClothingStore.Framework.PageObject.Pages
             }
         }
 
+        public void AddBookmark()
+        {
+            var listOfCards = Wrapper.FindElements(_bookmarkIcon);
+
+            for (int i = 0; i < listOfCards.Count; i++)
+            {
+                var x = Wrapper.GetValuesOfAttribute(listOfCards[i], "class");
+                if (!x.Contains("active"))
+                {
+                    listOfCards[i].Click();
+                    break;
+                }
+            }
+            Thread.Sleep(1000);
+        }
+
         public List<string> GetSortFavoriteList()
         {
             favoriteGoodNames.Sort();
@@ -73,6 +91,46 @@ namespace ClothingStore.Framework.PageObject.Pages
             int count = favoriteGoodNames.Count;
             Console.WriteLine(count);
             return count;
+        }
+
+        public void ClickShowMoreBtn()
+        {
+            Wrapper.ClickElement(_showMoreBtn);
+        }
+
+        public void SwitchCountCards(int count)
+        {
+            Wrapper.ClickElement(By.CssSelector($".percount [title='{count}']"));
+        }
+
+        public void ShowAllCardsViaShowMoreBtn()
+        {
+
+
+            while (Wrapper.IsElementDisplayed(_showMoreBtn))
+            {
+                ClickShowMoreBtn();
+
+                //var productCardsListHere = Wrapper.FindElements(_productCard);
+                //productCardsList.InsertRange(productCardsList.Count, productCardsListHere);
+                Thread.Sleep(3000);
+            }
+        }
+
+        public int GetProductCardsCount()
+        {
+            //List<IWebElement> productCardsList = Wrapper.FindElements(_productCard);
+            //return productCardsList.Count;
+
+            List<IWebElement> productCardsList = Wrapper.FindElements(_productCard);
+            return productCardsList.Count;
+        }
+
+        public int GetValuePaginatorCount()
+        {
+            string paginatorCount = Wrapper.CutFirstPartTextWithAllTextValue(Wrapper.GetElementText(_paginatorCount), "из ");
+            int paginatorCountInt = Convert.ToInt32(paginatorCount);
+            return paginatorCountInt;
         }
     }
 }
