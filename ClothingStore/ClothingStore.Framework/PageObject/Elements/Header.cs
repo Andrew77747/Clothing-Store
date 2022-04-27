@@ -31,6 +31,8 @@ namespace ClothingStore.Framework.PageObject.Elements
         private By _logo = By.CssSelector(".logo");
         private By _favoriteCount = By.CssSelector(".huab__cell__text.js__bookmarksCount");
         private By _favoriteBtn = By.CssSelector(".huab__cell.huab__cell__bookmark");
+        private By _shoppingCartNameInBasketSticker = 
+            By.XPath("//*[contains(@class, 'huab__cell huab__cell__multicart')]//*[contains(@title, 'Перейти в корзину')]");
 
         #endregion
 
@@ -120,6 +122,15 @@ namespace ClothingStore.Framework.PageObject.Elements
         public void ClickFavoriteBtn()
         {
             Wrapper.ClickElement(_favoriteBtn);
+        }
+
+        public string GetSecondShoppingCartNameFromBasketSticker()
+        {
+            Wrapper.PointToElement(_shoppingCartBtn);
+            Wrapper.WaitElementDisplayed(_shoppingCartBtn);
+            var shoppingCartNames = Wrapper.FindElements(_shoppingCartNameInBasketSticker);
+            string secondShoppingCartName = shoppingCartNames[1].GetAttribute("title");
+            return Wrapper.CutPartTextFromMiddleWithAllTextValue(secondShoppingCartName, "«", "»");
         }
     }
 }

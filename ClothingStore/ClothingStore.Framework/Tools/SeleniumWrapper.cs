@@ -201,6 +201,7 @@ namespace ClothingStore.Framework.Tools
         public void PointToElement(By selector)
         {
             Actions action = new Actions(_driver);
+            //action.MoveToElement(FindElement(By.CssSelector(selector))).Build().Perform();
             action.MoveToElement(FindElement(selector)).Build().Perform();
         }
 
