@@ -25,6 +25,7 @@ namespace ClothingStore.Tests.Scenarios
         private int _sumBonus;
         private string _deliveryMethod;
         private string _paymentMethod;
+        private string _actualNameGoodInModal;
 
         public BuyingGoodsSteps(WebDriverManager manager, ConfigurationManager configuration)
         {
@@ -43,14 +44,14 @@ namespace ClothingStore.Tests.Scenarios
         {
             _header.SelectGood(model);
         }
-        
+
         [When(@"I add good to shopping cart")]
         public void WhenIAddToShoppingCart()
         {
             _goodPage.ClickBuyBtn();
             _modalGoodAddToShoppingCart.ClickCheckoutBtn();
         }
-        
+
         [Then(@"'(.*)' is in shopping cart")]
         public void ThenIsInShoppingCart(string model)
         {
@@ -80,12 +81,13 @@ namespace ClothingStore.Tests.Scenarios
         [When(@"I click buy button")]
         public void WhenIClickBuyButton()
         {
-            _catalogPage.ClickBuyBtn();
+            _catalogPage.ClickBuyBtnAndReturnGoodName();
         }
 
         [When(@"I click continue buying in modal")]
         public void WhenIClickContinueBuyingInModal()
-        {   
+        {
+
             _goodAddToShoppingCart.ClickContinueBuyingBtn();
         }
 

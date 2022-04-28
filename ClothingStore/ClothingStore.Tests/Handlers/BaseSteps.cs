@@ -65,5 +65,12 @@ namespace ClothingStore.Tests.Handlers
         {
             _header.ClickTopMenuItem(item);
         }
+
+        [When(@"I clear shopping cart with basic checkbox")]
+        [Then(@"I clear shopping cart with basic checkbox")]
+        public void ThenIClearShoppingCartWithBasicCheckbox()
+        {
+            _shoppingCart.ClearShoppingCartWithBasicCheckbox();
+        }
     }
 }

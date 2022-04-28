@@ -132,5 +132,13 @@ namespace ClothingStore.Framework.PageObject.Elements
             string secondShoppingCartName = shoppingCartNames[1].GetAttribute("title");
             return Wrapper.CutPartTextFromMiddleWithAllTextValue(secondShoppingCartName, "«", "»");
         }
+
+        public void ChooseShoppingCartInBasketSticker(int x)
+        {
+            Wrapper.PointToElement(_shoppingCartBtn);
+            Wrapper.WaitElementDisplayed(_shoppingCartBtn);
+            var shoppingCartNames = Wrapper.FindElements(_shoppingCartNameInBasketSticker);
+            shoppingCartNames[x].Click();
+        }
     }
 }

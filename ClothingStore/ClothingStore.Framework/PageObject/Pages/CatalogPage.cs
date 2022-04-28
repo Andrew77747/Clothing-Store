@@ -21,6 +21,7 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         private By _buyBtn = By.XPath("//div[@class='indexGoods__item']//*[text()='Купить']");
         private By _titleProductCardWithBuyBtn = By.XPath("//a[text()= 'Купить']/../../..//a[contains(@class, 'indexGoods__item__name') ]");
+        private By _productCardWithBuyBtn = By.XPath("//a[text()= 'Купить']/../../..");
         private By _bookmarkIcon = By.CssSelector(".ic__hasSet.ic__hasSet__bookmark");
         private By _bookmarkIconInCard = By.CssSelector("[title='В закладки']");
         private By _titleProductCard = By.CssSelector(".indexGoods__item__name");
@@ -33,10 +34,14 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         #endregion
 
-        public void ClickBuyBtn()
+        public string ClickBuyBtnAndReturnGoodName()
         {
-            Wrapper.ClickElement(_buyBtn);
+            var buyButtonsInCards = Wrapper.FindElements(_productCardWithBuyBtn);
+            string goodName = buyButtonsInCards[0].FindElement(_titleProductCard).Text;
+            buyButtonsInCards[0].FindElement(_buyBtn).Click();
+            //Wrapper.ClickElement(_buyBtn);
             //Thread.Sleep(3000);
+            return goodName;
         }
 
         public void ClickTitleProductCard()

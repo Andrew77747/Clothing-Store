@@ -28,6 +28,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _checkboxInCard = By.CssSelector(".multicart__item .ui-checkboxradio-icon");
         private By _deleteBtn = By.CssSelector(".multicart__items__manageLeftPanel [name='delete']");
         private By _goodCardTitile = By.CssSelector(".multicart__item__description .semibold");
+        private By _basicCheckbox = By.CssSelector(".multicart__items__manageLeftPanel .ui-checkboxradio-label");
         private By _deliveryWithinMKAD =
             By.XPath("//td[@class='js__linkAsLabel'][contains(text(), 'Доставка в пределах МКАД')]/..//*[contains(@class, 'ui-checkboxradio-label')]");
         private By _sbpPayRadioBtn =
@@ -41,6 +42,8 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _activeDeliveryMethod =
             By.XPath("//div[@id='basket_delivery__ID']//*[contains(@class, 'ui-state-active')]/../.. //td[@class='js__linkAsLabel']");
         private By _shoppingCartTab = By.XPath("//*[contains(@class, 'multicart__header__item multicart__header__item__color')]");
+        private By _activeShoppingCartName = 
+            By.XPath("//*[@class='multicart__header']//*[contains(@class, 'active')]//*[@class='multicart__header__itemName']");
 
         #endregion
 
@@ -154,6 +157,38 @@ namespace ClothingStore.Framework.PageObject.Pages
         public bool IsShoppingCartNamesAreEqual()
         {
             return GetSecondShoppingCartName().Equals(_header.GetSecondShoppingCartNameFromBasketSticker());
+        }
+
+        public void ClearShoppingCartWithBasicCheckbox()
+        {
+            if (Wrapper.IsElementExists(_cardInShoppingCart))
+            {
+                Wrapper.FindElement(_basicCheckbox).Click();
+                Wrapper.FindElement(_deleteBtn).Click();
+            }
+        }
+
+        public void ChooseSecondShoppingCart()
+        {
+            var shoppingCartCount = Wrapper.FindElements(_shoppingCartTab);
+            shoppingCartCount[1].Click();
+        }
+
+        public string GetActiveShoppingCartName()
+        {
+            return Wrapper.FindElement(_activeShoppingCartName).Text;
+        }
+
+        public bool IsAddedShoppingCartAreDeleted()
+        {
+            var shoppingCartCount = Wrapper.FindElements(_shoppingCartTab);
+
+            if (shoppingCartCount.Count.Equals(1))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
