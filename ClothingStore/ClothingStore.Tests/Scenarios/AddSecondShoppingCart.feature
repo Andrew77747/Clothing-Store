@@ -44,21 +44,22 @@ Scenario: Replace good to another shopping cart and postpone buying
 	And I click good checkbox
 	And I replace good to new added shopping cart with replace button
 	Then I see good in new added shopping cart
+	And I see right counter
 	When I choose basic shopping cart
 	Then I don't see good I replace in basic shopping cart
 	When I switch on second shopping cart
 	And I replace good to basic shopping cart with replace icon
 	Then I see good in basic shopping cart
+	And I see right counter again
 	When I switch on second shopping cart
 	Then I don't see good I replace in new added shopping cart
-	# Проверить, что нет товаров с помощью отсутствия элементов и по счетчику на табах
 	When I choose basic shopping cart
 	And I click good checkbox
 	And I click buy later button
-	Then I see recover button
+	Then I see recover button and I don't see postpone icon
 	When I click recover button
-	And I click postpone icon
-	Then I see recover button
+	Then I see postpone icon and I don't see recover button
+	When I click postpone icon
+	Then I see recover button and I don't see postpone icon
 	And I delete all added shopping carts
 	And I clean shopping cart
-

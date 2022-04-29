@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using ClothingStore.Framework.PageObject.Elements;
 using ClothingStore.Framework.Tools;
@@ -19,6 +20,14 @@ namespace ClothingStore.Framework.PageObject.Pages
         #region Maps of Elements
 
         private By _cardInShoppingCart = By.CssSelector(".multicart__item");
+        private By _replcaeBtn = By.CssSelector(".multicart__items__manageLine [title='Переместить в другую корзину']");
+        private By _buyLaterBtn = By.CssSelector("[value='Купить позже']");
+        private By _newShoppingCartModal = By.Id("popup_basketedit");
+        private By _replcaeIcon = By.CssSelector(".ic__set.ic__set__multicartShift");
+        private By _recoveryBtn = By.CssSelector("[title='Восстановить в корзине']");
+        private By _postponeIcon = By.CssSelector("[title='Отложить покупку этого товара']");
+        private By _shoppingCartTabCounter = By.CssSelector(".multicart__header .itemCount");
+        private By _shoppingCartInReplaceModal = By.CssSelector(".button.button__asLink");
         private By _createNewShoppingCartBtn = By.CssSelector("[title='Создать новую корзину']");
         private By _newShoppingCartNameInput = By.CssSelector("[title='Название новой корзины']");
         private By _createNewShoppingCartBtnInModal = By.Id("basketnew_button");
@@ -110,6 +119,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         public void AddNewShoppingCart(string name)
         {
             Wrapper.ClickElement(_createNewShoppingCartBtn);
+            Wrapper.WaitElementDisplayed(_newShoppingCartModal);
             Wrapper.TypeAndSend(_newShoppingCartNameInput, name);
             Wrapper.ClickElement(_createNewShoppingCartBtnInModal);
         }
@@ -189,6 +199,71 @@ namespace ClothingStore.Framework.PageObject.Pages
             }
 
             return false;
+        }
+
+        public void CheckCheckbox()
+        {
+            Wrapper.ClickCheckbox(_checkboxInCard);
+        }
+
+        public void ReplaceGoodWithButton()
+        {
+            Wrapper.ClickElement(_replcaeBtn);
+            Wrapper.ClickElement(_shoppingCartInReplaceModal);
+        }
+
+        public void ReplaceGoodWithIcon()
+        {
+            Wrapper.ClickElement(_replcaeIcon);
+            Wrapper.ClickElement(_shoppingCartInReplaceModal);
+        }
+
+        public string GetGoodName()
+        {
+            return Wrapper.GetElementText(_goodCardTitile);
+        }
+
+        public int GetNumberFromCounter(int x)
+        {
+            var counterList = Wrapper.FindElements(_shoppingCartTabCounter);
+            string counterText = counterList[x].Text;
+            int counterNumber = Convert.ToInt32(counterText);
+            return counterNumber;
+        }
+
+        public bool IsGoodPresents(string text)
+        {
+            return Wrapper.VerifyExpectedTitleIsDisplayed(_goodCardTitile, text);
+        }
+
+        public bool IsCardNotExistsInShoppingCart()
+        {
+            return Wrapper.IsElementsNotExist(_cardInShoppingCart);
+        }
+
+        public void BuyLaterBtn()
+        {
+            Wrapper.ClickElement(_buyLaterBtn);
+        }
+
+        public bool IsRecoveryBtnExists()
+        {
+            return Wrapper.IsElementExists(_recoveryBtn);
+        }
+
+        public bool IsPostponeButtonExists()
+        {
+            return Wrapper.IsElementExists(_postponeIcon);
+        }
+
+        public void RecoveryGood()
+        {
+            Wrapper.ClickElement(_recoveryBtn);
+        }
+
+        public void PostponeGood()
+        {
+            Wrapper.ClickElement(_postponeIcon);
         }
     }
 }

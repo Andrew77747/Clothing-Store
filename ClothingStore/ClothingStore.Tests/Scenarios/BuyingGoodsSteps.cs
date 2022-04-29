@@ -87,7 +87,6 @@ namespace ClothingStore.Tests.Scenarios
         [When(@"I click continue buying in modal")]
         public void WhenIClickContinueBuyingInModal()
         {
-
             _goodAddToShoppingCart.ClickContinueBuyingBtn();
         }
 

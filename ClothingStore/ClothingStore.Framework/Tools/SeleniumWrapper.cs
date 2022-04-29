@@ -46,6 +46,11 @@ namespace ClothingStore.Framework.Tools
             _driver.Navigate().Back();
         }
 
+        public void RefreshPage()
+        {
+            _driver.Navigate().Refresh();
+        }
+
         public void NavigateToUrl(string url)
         {
             _driver.Navigate().GoToUrl(url);

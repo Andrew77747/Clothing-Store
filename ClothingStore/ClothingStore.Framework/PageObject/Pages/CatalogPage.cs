@@ -39,8 +39,7 @@ namespace ClothingStore.Framework.PageObject.Pages
             var buyButtonsInCards = Wrapper.FindElements(_productCardWithBuyBtn);
             string goodName = buyButtonsInCards[0].FindElement(_titleProductCard).Text;
             buyButtonsInCards[0].FindElement(_buyBtn).Click();
-            //Wrapper.ClickElement(_buyBtn);
-            //Thread.Sleep(3000);
+            
             return goodName;
         }
 
