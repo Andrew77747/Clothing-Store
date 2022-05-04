@@ -28,7 +28,6 @@ namespace ClothingStore.Tests.Scenarios
         [Then(@"I delete all added shopping carts")]
         public void ThenIDeleteAllAddedShoppingCarts()
         {
-            _header.GoToShoppingCart();
             _shoppingCart.DeleteAllAddedShoppingCarts();
         }
 
@@ -214,6 +213,19 @@ namespace ClothingStore.Tests.Scenarios
         public void WhenIClickPostponeIcon()
         {
             _shoppingCart.PostponeGood();
+        }
+
+        [When(@"I click replace button")]
+        public void WhenIClickReplaceButton()
+        {
+            _shoppingCart.ClickReplaceBtn();
+        }
+
+        [When(@"I create new shopping '(.*)' cart and replace good")]
+        public void WhenICreateNewShoppingCartAndReplaceGood(string name)
+        {
+            _newCreatedShoppingCartName = name;
+            _shoppingCart.CreateNewShoppingCartWhileReplacing(name);
         }
     }
 }

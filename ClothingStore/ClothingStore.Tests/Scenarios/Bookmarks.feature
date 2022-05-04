@@ -30,5 +30,5 @@ Scenario: Check delete bookmarks
 	Then I see message to cancel delete
 	When I cancel deletion
 	Then I see bookmark I deleted a moment ago
-	When I delete all bookmarks
+	When I clear bookmarks
 	Then I don't see bookmarks

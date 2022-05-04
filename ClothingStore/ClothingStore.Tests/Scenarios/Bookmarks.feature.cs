@@ -198,7 +198,7 @@ this.FeatureBackground();
  testRunner.Then("I see bookmark I deleted a moment ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 33
- testRunner.When("I delete all bookmarks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I clear bookmarks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 34
  testRunner.Then("I don\'t see bookmarks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

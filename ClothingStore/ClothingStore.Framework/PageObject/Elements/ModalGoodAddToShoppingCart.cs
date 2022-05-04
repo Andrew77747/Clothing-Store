@@ -1,4 +1,5 @@
-﻿using ClothingStore.Framework.Tools;
+﻿using System.Threading;
+using ClothingStore.Framework.Tools;
 using OpenQA.Selenium;
 
 namespace ClothingStore.Framework.PageObject.Elements
@@ -20,6 +21,7 @@ namespace ClothingStore.Framework.PageObject.Elements
         public void ClickContinueBuyingBtn()
         {
             Wrapper.ClickElement(_continueBuyingBtn);
+            Wrapper.RefreshPage();
         }
 
         public void ClickCheckoutBtn()

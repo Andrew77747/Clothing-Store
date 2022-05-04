@@ -91,7 +91,7 @@ namespace ClothingStore.Framework.Tools
 
         public List<IWebElement> FindElements(By by)
         {
-            WaitElementDisplayed(by);
+            //WaitElementDisplayed(by);
             return new List<IWebElement>(_driver.FindElements(by));
         }
 
@@ -196,6 +196,19 @@ namespace ClothingStore.Framework.Tools
             {
                 Actions action = new Actions(_driver);
                 action.MoveToElement(FindElement(By.XPath(selector))).Build().Perform();
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("There is no such element! Error: " + e);
+            }
+        }
+
+        public void HoverMouseOnElement(IWebElement element)
+        {
+            try
+            {
+                Actions action = new Actions(_driver);
+                action.MoveToElement(element).Build().Perform();
             }
             catch (NoSuchElementException e)
             {
@@ -553,7 +566,7 @@ namespace ClothingStore.Framework.Tools
         // bool ждем, что нескольких элементов не будут видимыми
         public void WaitElementsNotVisible(By by)
         {
-            _wait.Until(d => IsElementsNotExist(by));
+            _wait.Until(d => IsElementsNotExistOrDisplayed(by));
         }
 
         public void WaitElementDisplayed(By by)
@@ -579,16 +592,38 @@ namespace ClothingStore.Framework.Tools
         //}
 
         // как эти два метода ожидания плюс и минус элемент?
-        public void WaitElementMinus(By by)
+        public void WaitElementMinus(List<IWebElement> realCount, List<IWebElement> elem)
         {
-            var listOfElement = FindElements(by);
-            _wait.Until(d => d.FindElements(by).Count == listOfElement.Count - 1);
+            //var listOfElement = FindElements(by);
+            //_wait.Until(d => FindElements(by).Count == listOfElement.Count - 1);
+            //var x = FindElements(By.CssSelector(".ic__set.ic__set__close"));
+            //_wait.Until(d => x.Count.Equals(elem.Count - 1));
+            _wait.Until(d => xxx(realCount, elem));
+        }
+
+        public bool xxx(List<IWebElement> realCount, List<IWebElement> elem)
+        {
+            var real = realCount;
+            return real.Count.Equals(elem.Count - 1);
+        }
+
+        public void WaitElementMinusInList(List<IWebElement> list)
+        {
+
+            _wait.Until(d => list.Count == list.Count - 1);
         }
 
         public void WaitElementPlus(By by)
         {
             var listOfElement = FindElements(by);
             _wait.Until(d => d.FindElements(by).Count == listOfElement.Count + 1);
+        }
+
+        public bool IsElementElementPlus(By by)
+        {
+            var listOfElement = FindElements(by);
+            
+           return _wait.Until(d => FindElements(by).Count == listOfElement.Count + 1);
         }
 
         //public void WaitForElementNotExist(IWebElement element)
@@ -681,7 +716,7 @@ namespace ClothingStore.Framework.Tools
         //}
 
         // 2 bool
-        public bool IsElementsNotExist(By by)  /////////  Хороший метод, что нескольких элементов нет
+        public bool IsElementsNotExistOrDisplayed(By by)  /////////  Хороший метод, что нескольких элементов нет. Может разбить на NotExist и NotDisplayed
         {
             ReadOnlyCollection<IWebElement> elements = _driver.FindElements(by);
             if (elements.Count == 0 || !elements[0].Displayed)
@@ -689,6 +724,54 @@ namespace ClothingStore.Framework.Tools
                 return true;
             }
             return false;
+        }
+
+        public void WaitForElementNotExistsOrDisplayed(By by)
+        {
+            _wait.Until(d => IsElementsNotExistOrDisplayed(by));
+        }
+
+        public bool IsElementsNotDisplayed(IWebElement elem)  /////////  Хороший метод, что элемент не виден, когда у нас уже есть список элементов
+        {
+            if (!elem.Displayed)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void WaitForElementNotDisplayed(IWebElement elem) /////////  Хороший вэйтер, что элемент не виден, когда у нас уже есть список элементов
+        {
+            _wait.Until(d => IsElementsNotDisplayed(elem));
+        }
+
+
+
+
+        public bool IsElementsNotDisplayed(By by)  /////////  Хороший метод, что элемент не виден
+        {
+            IWebElement element = _driver.FindElement(by);
+            if (!element.Displayed)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void WaitForElementNotDisplayed(By by) /////////  Хороший вэйтер, что элемент не виден
+        {
+            _wait.Until(d => IsElementsNotDisplayed(by));
+        }
+
+        public bool IsAttributeContains(IWebElement element, string attribute, string value)
+        {
+            var x = GetValuesOfAttribute(element, attribute);
+            return x.Contains(value);
+        }
+
+        public void WaitForAttributeContains(IWebElement element, string attribute, string value)
+        {
+            _wait.Until(d => IsAttributeContains(element, attribute, value));
         }
 
         //public bool IsElementNotDisplayedElem(IWebElement element) //

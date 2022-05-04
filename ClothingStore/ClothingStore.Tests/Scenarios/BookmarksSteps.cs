@@ -26,9 +26,10 @@ namespace ClothingStore.Tests.Scenarios
         }
 
         [Then(@"I clear bookmarks")]
+        [When(@"I clear bookmarks")]
         public void ThenIClearBookmarks()
         {
-            _header.ClickFavoriteBtn();
+            //_header.ClickFavoriteBtn();
             _personalAreaBookmarksPage.ClearBookmarks();
         }
 
@@ -86,11 +87,11 @@ namespace ClothingStore.Tests.Scenarios
             Assert.IsTrue(_personalAreaBookmarksPage.IsBookmarkRestored(), "Bookmark is not restored");
         }
 
-        [When(@"I delete all bookmarks")]
-        public void WhenIDeleteAllBookmarks()
-        {
-            _personalAreaBookmarksPage.ClearBookmarks();
-        }
+        //[When(@"I delete all bookmarks")]
+        //public void WhenIDeleteAllBookmarks()
+        //{
+        //    _personalAreaBookmarksPage.ClearBookmarks();
+        //}
 
         [Then(@"I don't see bookmarks")]
         public void ThenIDonTSeeBookmarks()

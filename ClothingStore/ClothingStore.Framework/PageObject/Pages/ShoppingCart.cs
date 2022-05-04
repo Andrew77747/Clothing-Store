@@ -21,9 +21,11 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         private By _cardInShoppingCart = By.CssSelector(".multicart__item");
         private By _replcaeBtn = By.CssSelector(".multicart__items__manageLine [title='Переместить в другую корзину']");
+        private By _newShoppingCartNameInputInModal = By.CssSelector("[title='Название новой корзины']");
         private By _buyLaterBtn = By.CssSelector("[value='Купить позже']");
+        private By _createAndReplaceBtnInModal = By.CssSelector("[title='Создать']");
         private By _newShoppingCartModal = By.Id("popup_basketedit");
-        private By _replcaeIcon = By.CssSelector(".ic__set.ic__set__multicartShift");
+        private By _replaceIcon = By.CssSelector(".ic__set.ic__set__multicartShift");
         private By _recoveryBtn = By.CssSelector("[title='Восстановить в корзине']");
         private By _postponeIcon = By.CssSelector("[title='Отложить покупку этого товара']");
         private By _shoppingCartTabCounter = By.CssSelector(".multicart__header .itemCount");
@@ -53,8 +55,17 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _shoppingCartTab = By.XPath("//*[contains(@class, 'multicart__header__item multicart__header__item__color')]");
         private By _activeShoppingCartName = 
             By.XPath("//*[@class='multicart__header']//*[contains(@class, 'active')]//*[@class='multicart__header__itemName']");
+        private By _moveBelowElement = By.CssSelector("[title='Ниже в списке']");
+        private By _shoppingCartHeader = By.XPath("//h1[normalize-space(.)='Корзина']");
 
         #endregion
+
+        public void MoveElementBelow()
+        {
+            var elements = Wrapper.FindElements(_moveBelowElement);
+            Wrapper.HoverMouseOnElement(elements[0]);
+            elements[0].Click();
+        }
 
         public bool IsGoodAdded(string name)
         {
@@ -63,6 +74,9 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         public void CleanShoppingCart()
         {
+            if (Wrapper.IsElementsNotExistOrDisplayed(_shoppingCartHeader))
+                _header.GoToShoppingCart();
+
             if (Wrapper.IsElementExists(_cardInShoppingCart))
             {
                 var checkboxes = Wrapper.FindElements(_checkboxInCard);
@@ -126,15 +140,19 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         public void DeleteAllAddedShoppingCarts()
         {
+
+            if (Wrapper.IsElementsNotExistOrDisplayed(_shoppingCartHeader))
+                _header.GoToShoppingCart();
+
             var shoppingCartCount = Wrapper.FindElements(_shoppingCartTab);
 
-            while (shoppingCartCount.Count > 1)
-            {
-                shoppingCartCount[1].Click();
-                Wrapper.ClickElement(_deleteShoppingCartBtn);
-                Wrapper.ClickElement(_deleteShoppingCartBtnInModal);
-                shoppingCartCount = Wrapper.FindElements(_shoppingCartTab);
-            }
+                while (shoppingCartCount.Count > 1)
+                {
+                    shoppingCartCount[1].Click();
+                    Wrapper.ClickElement(_deleteShoppingCartBtn);
+                    Wrapper.ClickElement(_deleteShoppingCartBtnInModal);
+                    shoppingCartCount = Wrapper.FindElements(_shoppingCartTab);
+                }
         }
 
         public void ChooseBasicShoppingCart()
@@ -214,7 +232,7 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         public void ReplaceGoodWithIcon()
         {
-            Wrapper.ClickElement(_replcaeIcon);
+            Wrapper.ClickElement(_replaceIcon);
             Wrapper.ClickElement(_shoppingCartInReplaceModal);
         }
 
@@ -238,7 +256,7 @@ namespace ClothingStore.Framework.PageObject.Pages
 
         public bool IsCardNotExistsInShoppingCart()
         {
-            return Wrapper.IsElementsNotExist(_cardInShoppingCart);
+            return Wrapper.IsElementsNotExistOrDisplayed(_cardInShoppingCart);
         }
 
         public void BuyLaterBtn()
@@ -264,6 +282,17 @@ namespace ClothingStore.Framework.PageObject.Pages
         public void PostponeGood()
         {
             Wrapper.ClickElement(_postponeIcon);
+        }
+
+        public void ClickReplaceBtn()
+        {
+            Wrapper.ClickElement(_replcaeBtn);
+        }
+
+        public void CreateNewShoppingCartWhileReplacing(string text)
+        {
+            Wrapper.TypeAndSend(_newShoppingCartNameInputInModal, text);
+            Wrapper.ClickElement(_createAndReplaceBtnInModal);
         }
     }
 }

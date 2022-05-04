@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using ClothingStore.Framework.PageObject.Elements;
 using ClothingStore.Framework.Tools;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
@@ -11,15 +12,17 @@ namespace ClothingStore.Framework.PageObject.Pages
     {
 
         private string _deletedGoodTitle;
+        private readonly Header _header;
 
         public PersonalAreaBookmarksPage(IWebDriverManager manager) : base(manager)
         {
-
+            _header = new Header(manager);
         }
 
         #region Map of Elements
 
         private By _bookmarkTable = By.CssSelector(".tableGoods__itemGroup");
+        private By _myBookmarksHeader = By.XPath("//h1[normalize-space(.)='Мои закладки']");
         private By _bookmark = By.CssSelector(".tableGoods__itemGroup");
         private By _clearBookmarkBtn = By.CssSelector(".ic__set.ic__set__close");
         private By _favoriteItemName = By.CssSelector(".tableGoods__item__name");
@@ -39,7 +42,8 @@ namespace ClothingStore.Framework.PageObject.Pages
         {
             _deletedGoodTitle = Wrapper.GetElementText(_goodCardTitle);
             Wrapper.ClickElement(_clearBookmarkBtn);
-            Thread.Sleep(1000);
+            Wrapper.WaitForElementNotExistsOrDisplayed(_clearBookmarkBtn);
+            //Thread.Sleep(1000);
         }
 
         public bool IsRightElementWasRemoved()
@@ -55,7 +59,7 @@ namespace ClothingStore.Framework.PageObject.Pages
         public void CancelDeletion()
         {
             Wrapper.ClickElement(_cancelDeletionTitle);
-            Thread.Sleep(1000);
+            Wrapper.WaitForElementNotExistsOrDisplayed(_cancelDeletionTitle);
         }
 
         public bool IsBookmarkRestored()
@@ -67,29 +71,24 @@ namespace ClothingStore.Framework.PageObject.Pages
         public bool IsAllBookmarksWasDeleted()
         {
             return Wrapper.IsElementNotDisplayed2(_bookmarkTable);
-            //return Wrapper.IsElementsNotExist(_bookmarkTable);
+            //return Wrapper.IsElementsNotExistOrDisplayed(_bookmarkTable);
         }
 
         public void ClearBookmarks()
         {
+            if (Wrapper.IsElementsNotExistOrDisplayed(_myBookmarksHeader))
+                _header.ClickFavoriteBtn();
+
             if (Wrapper.IsElementExists(_bookmarkTable))
             {
                 var bookmarkCloseButtons = Wrapper.FindElements(_clearBookmarkBtn);
 
                 foreach (var closeButton in bookmarkCloseButtons)
                 {
-                    closeButton.Click();
-                    Thread.Sleep(1000);
-                    //Wrapper.WaitElementInvisible(_clearBookmarkBtn);
-                    //Wrapper.WaitElementInvisible(_clearBookmarkBtn);
-                    //Wrapper.WaitForElementNotExist(closeButton);
-                }
 
-                //for (int i = 0; i < bookmarkCloseButtons.Count; i++)
-                //{
-                //    bookmarkCloseButtons[i].Click();
-                //    Wrapper.WaitForElementNotExist(bookmarkCloseButtons[i]);
-                //}
+                    closeButton.Click();
+                    Wrapper.WaitForElementNotDisplayed(closeButton);
+                }
             }
         }
 

@@ -36,7 +36,6 @@ namespace ClothingStore.Tests.Handlers
         [Then(@"I clean shopping cart")]
         public void GivenICleanShoppingCart()
         {
-            _header.GoToShoppingCart();
             _shoppingCart.CleanShoppingCart();
         }
 

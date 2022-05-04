@@ -39,8 +39,14 @@ namespace ClothingStore.Framework.PageObject.Pages
             var buyButtonsInCards = Wrapper.FindElements(_productCardWithBuyBtn);
             string goodName = buyButtonsInCards[0].FindElement(_titleProductCard).Text;
             buyButtonsInCards[0].FindElement(_buyBtn).Click();
-            
+
             return goodName;
+        }
+
+        public void ClickBuyBtn()
+        {
+            var buyButtonsInCards = Wrapper.FindElements(_productCardWithBuyBtn);
+            buyButtonsInCards[0].FindElement(_buyBtn).Click();
         }
 
         public void ClickTitleProductCard()
@@ -74,10 +80,10 @@ namespace ClothingStore.Framework.PageObject.Pages
                 if (!x.Contains("active"))
                 {
                     listOfCards[i].Click();
+                    Wrapper.WaitForAttributeContains(listOfCards[i], "class", "active");
                     break;
                 }
             }
-            Thread.Sleep(1000);
         }
 
         public List<string> GetSortFavoriteList()

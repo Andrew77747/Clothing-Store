@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using ClothingStore.Framework.PageObject.Elements;
 using ClothingStore.Framework.PageObject.Pages;
 using ClothingStore.Framework.Tools;

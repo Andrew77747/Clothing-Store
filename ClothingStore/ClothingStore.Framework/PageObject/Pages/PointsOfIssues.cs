@@ -35,8 +35,6 @@ namespace ClothingStore.Framework.PageObject.Pages
             Thread.Sleep(2000);
             Wrapper.MoveElement(_zoomMapSlider, 0, -20);
             Thread.Sleep(4000);
-
-
         }
     }
 }
