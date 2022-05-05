@@ -52,13 +52,13 @@ namespace ClothingStore.Framework.PageObject.Pages
 
             while (Wrapper.IsElementExists(_arrowNext))
             {
-                totalCountElements += Wrapper.ElementCount(_promotioCard);
+                totalCountElements += Wrapper.GetElementCount(_promotioCard);
 
                 ClickArrowNext();
 
                 if (!Wrapper.IsElementExists(_arrowNext))
                 {
-                    totalCountElements += Wrapper.ElementCount(_promotioCard);
+                    totalCountElements += Wrapper.GetElementCount(_promotioCard);
                 }
             }
             return totalCountElements;

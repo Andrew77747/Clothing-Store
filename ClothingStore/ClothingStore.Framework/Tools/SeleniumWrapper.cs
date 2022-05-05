@@ -658,7 +658,7 @@ namespace ClothingStore.Framework.Tools
             return false;
         }
 
-        public int ElementCount(By selector)
+        public int GetElementCount(By selector)
         {
             int totalCountElements = 0;
 
@@ -666,6 +666,17 @@ namespace ClothingStore.Framework.Tools
             totalCountElements += listOfElements.Count;
 
             return totalCountElements;
+        }
+
+        public int GetElementCount2(By by)
+        {
+            var countOfElements = GetElements(by).Count;
+            return countOfElements;
+        }
+
+        public int GetElementCount3(By selector)
+        {
+            return _driver.FindElements(selector).Count;
         }
 
         public bool IsElementExists(By by)

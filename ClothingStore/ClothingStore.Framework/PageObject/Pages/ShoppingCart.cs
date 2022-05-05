@@ -56,15 +56,39 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _activeShoppingCartName = 
             By.XPath("//*[@class='multicart__header']//*[contains(@class, 'active')]//*[@class='multicart__header__itemName']");
         private By _moveBelowElement = By.CssSelector("[title='Ниже в списке']");
+        private By _moveHigherElement = By.CssSelector("[title='Выше в списке']");
         private By _shoppingCartHeader = By.XPath("//h1[normalize-space(.)='Корзина']");
+
+        private By xxx = By.CssSelector(".cart__infoTable__checkboxCell");
 
         #endregion
 
         public void MoveElementBelow()
         {
+            var cardTitle = Wrapper.FindElements(_goodCardTitile);
+            Wrapper.HoverMouseOnElement(cardTitle[0]);
             var elements = Wrapper.FindElements(_moveBelowElement);
-            Wrapper.HoverMouseOnElement(elements[0]);
             elements[0].Click();
+        }
+
+        public void MoveElementHigher()
+        {
+            var cardTitle = Wrapper.FindElements(_goodCardTitile);
+            Wrapper.HoverMouseOnElement(cardTitle[1]);
+            var elements = Wrapper.FindElements(_moveHigherElement);
+            elements[1].Click();
+        }
+
+
+        public List<string> ListOfElementsMoving()
+        {
+            var goodTitles = Wrapper.GetElementsTextList(_goodCardTitile);
+            return goodTitles;
+        }
+
+        public int GetElementsCount()
+        {
+            return Wrapper.GetElementCount3(_goodCardTitile);
         }
 
         public bool IsGoodAdded(string name)

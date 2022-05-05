@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using ClothingStore.Framework.PageObject.Pages;
 using ClothingStore.Framework.Tools;
@@ -13,6 +14,7 @@ namespace ClothingStore.Tests.Scenarios
 
         private readonly CatalogPage _catalogPage;
         private readonly ShoppingCart _shoppingCart;
+        private List<string> _listOfGoodsBeforeMoving = new();
 
         public MoveElementInStoppingCartSteps(IWebDriverManager manager)
         {
@@ -26,12 +28,36 @@ namespace ClothingStore.Tests.Scenarios
             _catalogPage.ClickBuyBtn();
         }
 
+        [When(@"I add current location of cards")]
+        public void WhenIAddCurrentLocationOfCards()
+        {
+            _listOfGoodsBeforeMoving = _shoppingCart.ListOfElementsMoving();
+        }
+
+
         [When(@"I move the first card below")]
         public void WhenIMoveTheFirstCardBelow()
         {
             _shoppingCart.MoveElementBelow();
-            Thread.Sleep(3000);
         }
 
+        [Then(@"I see two cards in shopping cart")]
+        public void ThenISeeTwoCardsInShoppingCart()
+        {
+            Assert.AreEqual(2, _shoppingCart.GetElementsCount(), "Counts must be equal");
+        }
+
+
+        [Then(@"I see cards changed places")]
+        public void ThenISeeCardsChangedPlaces()
+        {
+            Assert.AreNotEqual(_listOfGoodsBeforeMoving, _shoppingCart.ListOfElementsMoving(), "Lists of cards are equal");
+        }
+
+        [When(@"I move the second card higher")]
+        public void ThenIMoveTheSecondCardHigher()
+        {
+            _shoppingCart.MoveElementHigher();
+        }
     }
 }
