@@ -59,8 +59,6 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _moveHigherElement = By.CssSelector("[title='Выше в списке']");
         private By _shoppingCartHeader = By.XPath("//h1[normalize-space(.)='Корзина']");
 
-        private By xxx = By.CssSelector(".cart__infoTable__checkboxCell");
-
         #endregion
 
         public void MoveElementBelow()

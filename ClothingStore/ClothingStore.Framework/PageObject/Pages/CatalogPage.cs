@@ -31,6 +31,12 @@ namespace ClothingStore.Framework.PageObject.Pages
         private By _productCardFrame = By.CssSelector(".goods__items.minilisting.borderedTiles");
         private By _showMoreBtn = By.CssSelector(".js__ajaxExchange.js__ajaxListingMore");
         private By _paginatorCount = By.CssSelector(".paginator__count");
+        private By _paginatorActive = By.CssSelector(".js__paginator__linkActive");
+        private By _allPaginators = By.XPath("//*[contains(@class, 'js__paginator__link')]");
+        private By _compareItem = By.CssSelector(".columnUpperBlock__content .thinImaginedList__item");
+        private By _inactiveCompareIconInCard = By.CssSelector(".ic__hasSet.ic__hasSet__compare");
+        private By _deleteCompareIconInCard = By.CssSelector(".content__mainColumn [title='Удалить из сравнения']");
+        private By _deleteCompareIconInSideMenu = By.CssSelector(".thinImaginedList__item [title='Удалить из сравнения']");
 
         #endregion
 
@@ -41,6 +47,71 @@ namespace ClothingStore.Framework.PageObject.Pages
             buyButtonsInCards[0].FindElement(_buyBtn).Click();
 
             return goodName;
+        }
+
+        public string ClickCompareIconAndGetGoodName()
+        {
+            var cardList = Wrapper.FindElements(_productCard);
+            cardList[0].FindElement(_inactiveCompareIconInCard).Click();
+            //Thread.Sleep(1000);
+            //Wrapper.WaitElementDisplayed(_deleteCompareIconInCard);
+            Wrapper.WaitForAttributeContains(cardList[0].FindElement(_inactiveCompareIconInCard), "class", "active");
+            return cardList[0].FindElement(_productCardTitle).Text;
+        }
+
+        public void DeleteGoodsFromComparingInSideMenu()
+        {
+            var deleteIconInCards = Wrapper.FindElements(_deleteCompareIconInSideMenu);
+
+            if (deleteIconInCards.Count != 0)
+            {
+                foreach (var x in deleteIconInCards)
+                {
+                    x.Click();
+                }
+
+                Wrapper.WaitForElementNotExistsOrDisplayed(_deleteCompareIconInSideMenu);
+            }
+        }
+
+        public bool IsSideMenuGoodNameContainsAddedGoodName(string text)
+        {
+            return Wrapper.FindElement(_compareItem).Text.Contains(text);
+        }
+
+        public void DeleteGoodFromComparing()
+        {
+            var deleteIconInCards = Wrapper.FindElements(_deleteCompareIconInCard);
+            deleteIconInCards[0].Click();
+            Wrapper.WaitForElementNotDisplayed(deleteIconInCards[0]);
+        }
+
+        public bool IsCompareIconActiveAndDeleteIconVisible()
+        {
+            var compareIconList = Wrapper.FindElements(_inactiveCompareIconInCard);
+            var deleteCompareIconList = Wrapper.FindElements(_deleteCompareIconInCard);
+
+            return Wrapper.IsAttributeContains(compareIconList[0], "class", "active") &&
+             Wrapper.IsAttributeNotContains(deleteCompareIconList[0], "class", "noDisplay");
+        }
+
+        public bool IsCompareIconActiveAndDeleteIconInvisible()
+        {
+            var compareIconList = Wrapper.FindElements(_inactiveCompareIconInCard);
+            var deleteCompareIconList = Wrapper.FindElements(_deleteCompareIconInCard);
+
+            return Wrapper.IsAttributeNotContains(compareIconList[0], "class", "active") &&
+                   Wrapper.IsAttributeContains(deleteCompareIconList[0], "class", "noDisplay");
+        }
+
+        public void RefreshCurrentPage()
+        {
+            Wrapper.RefreshPage();
+        }
+
+        public bool IsCompareListEmpty()
+        {
+            return Wrapper.IsElementsNotExistOrDisplayed(_compareItem);
         }
 
         public void ClickBuyBtn()
@@ -119,11 +190,17 @@ namespace ClothingStore.Framework.PageObject.Pages
 
             while (Wrapper.IsElementDisplayed(_showMoreBtn))
             {
+                //var activePaginator = Wrapper.FindElements(_productCard).Count;
                 ClickShowMoreBtn();
 
                 //var productCardsListHere = Wrapper.FindElements(_productCard);
                 //productCardsList.InsertRange(productCardsList.Count, productCardsListHere);
                 Thread.Sleep(3000);
+
+
+                //Wrapper.WaitForMoreElements(activePaginator, _productCard);
+
+                //Wrapper.WaitForAttributeContains(activePaginator, "class", "Active");
             }
         }
 

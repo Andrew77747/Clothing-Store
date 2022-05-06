@@ -46,6 +46,18 @@ namespace ClothingStore.Framework.Tools
             _driver.Navigate().Back();
         }
 
+        public void ScrollIntoViewElement(By by)
+        {
+            //IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            //js.ExecuteScript("arguments[0].scrollIntoView();", element);
+
+            var e = _driver.FindElement(by);
+            // JavaScript Executor to scroll to element
+            ((IJavaScriptExecutor)_driver)
+                .ExecuteScript("arguments[0].scrollIntoView(true);", e);
+            //Console.WriteLine(e.Text);
+        }
+
         public void RefreshPage()
         {
             _driver.Navigate().Refresh();
@@ -560,8 +572,8 @@ namespace ClothingStore.Framework.Tools
         public void WaitElementNotExists(By by)
         {
             _wait.Until(d => d.FindElements(by).Count == 0);
-        }   
-        
+        }
+
 
         // bool ждем, что нескольких элементов не будут видимыми
         public void WaitElementsNotVisible(By by)
@@ -622,8 +634,8 @@ namespace ClothingStore.Framework.Tools
         public bool IsElementElementPlus(By by)
         {
             var listOfElement = FindElements(by);
-            
-           return _wait.Until(d => FindElements(by).Count == listOfElement.Count + 1);
+
+            return _wait.Until(d => FindElements(by).Count == listOfElement.Count + 1);
         }
 
         //public void WaitForElementNotExist(IWebElement element)
@@ -780,9 +792,33 @@ namespace ClothingStore.Framework.Tools
             return x.Contains(value);
         }
 
+        public bool IsAttributeNotContains(IWebElement element, string attribute, string value)
+        {
+            var x = GetValuesOfAttribute(element, attribute);
+            if (x.Contains(value))
+                return false;
+            return true;
+        }
+
         public void WaitForAttributeContains(IWebElement element, string attribute, string value)
         {
             _wait.Until(d => IsAttributeContains(element, attribute, value));
+        }
+
+        public void WaitForMoreElements(int countBefore, By by)
+        {
+            _wait.Until(d => IsElementsGetMore(countBefore, by));
+        }
+
+        public bool IsElementsGetMore(int countBefore, By by)
+        {
+            var listOfElements = FindElements(by).Count;
+            if (listOfElements > countBefore)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         //public bool IsElementNotDisplayedElem(IWebElement element) //
